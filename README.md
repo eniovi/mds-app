@@ -19,10 +19,20 @@ O app inteiro abaixo do login é escopado por **Cliente → Ticket → Tarefas**
 
 ```
 /login  →  /clients  →  /tickets  →  /  (painel de tarefas)  →  /files · /run-queue
-           (escolhe      (tickets     (tarefas do ticket ativo)
-            o cliente)     daquele
-                           cliente)
+(sem       (escolhe      (tickets     (tarefas do ticket ativo)
+ sessão →   o cliente)     daquele
+ sempre                    cliente)
+ aqui)
 ```
+
+Antes de tudo isso vem a **sessão**: quem não fez login cai em `/login`, seja qual for a
+URL digitada — navegador novo, storage limpo, link direto para `/files`, ou a aba deixada
+aberta depois de um logout. A guarda é o `components/SessionGate.tsx`, montado no layout
+raiz **em volta** do `WorkspaceProvider`, então um visitante anônimo nem chega a hidratar
+cliente, lista de tickets ou feed de atividades. Enquanto o estado de auth está sendo lido
+o gate segura a tela (`.session-splash`) em vez de piscar conteúdo protegido. `/login` é a
+única rota isenta. Quem persiste e lê a sessão é o `lib/session-context.tsx` — nenhuma
+tela escreve a chave de auth por conta própria.
 
 `lib/workspace-context.tsx` é o dono dessa hierarquia. Escolher um cliente estreita
 de uma vez a lista de tickets, o módulo de ambientes e o painel de atividades — nenhuma

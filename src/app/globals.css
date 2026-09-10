@@ -800,3 +800,8 @@ table.data-table tr.active-row td { background: var(--secondary); }
 .data-table-wide { min-width: 940px; }
 .data-table-wide .ticket-title { max-width: 30ch; }
 .data-table-wide .row-actions { flex-wrap: nowrap; }
+
+/* Session gate: what shows while the auth state is being read, and while an
+   anonymous visitor is on the way to /login. Nothing behind the login should
+   paint, so this is deliberately just the brand mark on the app background. */
+.session-splash { min-height: 100vh; display: grid; place-items: center; background: var(--bg); }

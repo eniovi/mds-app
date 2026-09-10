@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Ubuntu, Open_Sans, JetBrains_Mono } from "next/font/google";
 import { SessionProvider } from "@/lib/session-context";
 import { WorkspaceProvider } from "@/lib/workspace-context";
+import { SessionGate } from "@/components/SessionGate";
 import { I18nProvider } from "@/components/I18nProvider";
 import "./globals.css";
 
@@ -37,7 +38,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <I18nProvider>
           <SessionProvider>
-            <WorkspaceProvider>{children}</WorkspaceProvider>
+            <SessionGate>
+              <WorkspaceProvider>{children}</WorkspaceProvider>
+            </SessionGate>
           </SessionProvider>
         </I18nProvider>
       </body>

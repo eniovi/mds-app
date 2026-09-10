@@ -7,8 +7,8 @@ import { MicrosoftLogo } from "@/components/icons/MicrosoftLogo";
 import { HelpCircleIcon } from "@/components/icons/HelpCircleIcon";
 import { MDS_TASKS, MDS_CATEGORIES } from "@/lib/mds-data";
 import { MDS_CONNECTION } from "@/lib/mockData";
-import { writeString } from "@/lib/storage";
 import { useLanguage } from "@/lib/useLanguage";
+import { useSession } from "@/lib/session-context";
 
 type Phase = "idle" | "connecting" | "success";
 
@@ -16,6 +16,7 @@ export default function LoginPage() {
   const [phase, setPhase] = useState<Phase>("idle");
   const router = useRouter();
   const { t } = useLanguage();
+  const { signIn } = useSession();
 
   useEffect(() => {
     if (phase !== "connecting") return;
@@ -26,12 +27,12 @@ export default function LoginPage() {
   useEffect(() => {
     if (phase !== "success") return;
     const t2 = setTimeout(() => {
-      writeString("mds_auth", "1");
+      signIn();
       // the hierarchy starts at the client, not the task panel
       router.push("/clients");
     }, 900);
     return () => clearTimeout(t2);
-  }, [phase, router]);
+  }, [phase, router, signIn]);
 
   return (
     <div className="login-page">
