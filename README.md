@@ -91,6 +91,17 @@ src/
 
 ## O que ainda é simulado
 
+- **Ações "…Arquivo Corrente" da toolbar do editor** (`components/ide/ActionToolbar.tsx`,
+  `TaskDrawer autoRun`): Validar, Executar e Atualizar Script de Automação agem sobre a
+  **aba em evidência** — semeiam a tarefa com aquele caminho e já disparam a execução, sem
+  passar por um seletor de arquivos. Cada botão só habilita quando a aba aberta é um
+  arquivo que ele consegue tratar (`.dbc` para validar, `.dbc`/`.sql` para executar,
+  `autoscripts/*.py` para enviar), e é isso que garante que os valores semeados estejam
+  completos: o `autoRun` do `TaskDrawer` cai de volta no formulário se não estiverem, então
+  nunca roda nada meio especificado. "Voltar ao formulário" continua disponível para trocar
+  o alvo. "Gerar DBC de Automação" ficou de fora de propósito — consome a pasta
+  `autoscripts` inteira, não o arquivo aberto, e mantém o passo de confirmação.
+
 - **Todos os dados de sessão** (`lib/mockData.ts`): 3 clientes, 2–3 ambientes por cliente
   (misturando IBM Maximo 7.6 e IBM MAS), 3–4 tickets por cliente com responsável nomeado
   (`Person`: nome, iniciais e papel) e 15 eventos de atividade recente. É a fonte de onde

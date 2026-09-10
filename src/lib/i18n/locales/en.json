@@ -678,7 +678,7 @@
         "label": "Update Automation Script",
         "detail": "Uploads the local version of an automation script to the environment.",
         "fields": {
-          "script": { "label": "Automation script" }
+          "file": { "label": "Automation script" }
         }
       },
       "update-remote-ticket": { "label": "Update Remote Ticket", "detail": "Syncs the entire active ticket project with the remote repository." },

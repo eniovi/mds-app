@@ -678,7 +678,7 @@
         "label": "Actualizar Script de Automatización",
         "detail": "Envía la versión local de un script de automatización al entorno.",
         "fields": {
-          "script": { "label": "Script de automatización" }
+          "file": { "label": "Script de automatización" }
         }
       },
       "update-remote-ticket": { "label": "Actualizar Ticket Remoto", "detail": "Sincroniza todo el proyecto del ticket activo con el repositorio remoto." },

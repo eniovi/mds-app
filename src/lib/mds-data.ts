@@ -418,7 +418,12 @@ export const MDS_TASKS: Task[] = [
 
   { id: "update-autoscript", label: "Atualizar Script de Automação", category: "automation",
     detail: "Envia a versão local de um script de automação para o ambiente.",
-    fields: [{ id: "script", label: "Script de automação", type: "catalog", catalog: "scripts", required: true }] },
+    /* The input is the *local* .py file being sent up — which is what the detail
+       above always described — not a script picked from the environment's
+       catalog. Shaped like validate-dbc-file/run-script-file so the IDE
+       toolbar's "Atualizar Script de Automação" can act on the open tab by the
+       same rule as the other two current-file actions. */
+    fields: [{ id: "file", label: "Script de automação", type: "file", required: true, fileExtensions: ["py"] }] },
 
   { id: "update-remote-ticket", label: "Atualizar Ticket Remoto", category: "ticket",
     detail: "Sincroniza o projeto inteiro do ticket ativo com o repositório remoto.", fields: [] },

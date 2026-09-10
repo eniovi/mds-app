@@ -109,9 +109,12 @@ export default function FilesPage() {
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [taskInitialValues, setTaskInitialValues] = useState<Partial<TaskFormValues> | undefined>(undefined);
 
-  function openTask(task: Task, initialValues?: Partial<TaskFormValues>) {
+  const [taskAutoRun, setTaskAutoRun] = useState(false);
+
+  function openTask(task: Task, options?: { initialValues?: Partial<TaskFormValues>; autoRun?: boolean }) {
     setSelectedTask(task);
-    setTaskInitialValues(initialValues);
+    setTaskInitialValues(options?.initialValues);
+    setTaskAutoRun(!!options?.autoRun);
   }
 
   const [viewMode, setViewMode] = useState<"editor" | "list">("editor");
@@ -225,10 +228,11 @@ export default function FilesPage() {
       {selectedTask && (
         <TaskDrawer
           task={selectedTask}
-          onClose={() => { setSelectedTask(null); setTaskInitialValues(undefined); }}
+          onClose={() => { setSelectedTask(null); setTaskInitialValues(undefined); setTaskAutoRun(false); }}
           activeTicket={activeTicket}
           pushRun={pushRun}
           initialValues={taskInitialValues}
+          autoRun={taskAutoRun}
         />
       )}
 

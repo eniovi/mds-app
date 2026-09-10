@@ -26,14 +26,26 @@ interface TaskDrawerProps {
    * from a context that already knows part of the answer, like the IDE's
    * action toolbar opening "Validar Arquivo DBC" for the open file. */
   initialValues?: Partial<TaskFormValues>;
+  /** Skip the form and start running the moment the drawer opens. For callers
+   * that already know the complete answer, so the user isn't asked to pick
+   * what they just pointed at — the IDE toolbar's "…Arquivo Corrente" buttons
+   * act on the tab in front of you, not on a file chooser. Ignored (falls back
+   * to the form) when the seeded values don't satisfy the task's required
+   * fields, so this can never silently run something half-specified. */
+  autoRun?: boolean;
 }
 
-export function TaskDrawer({ task, onClose, activeTicket, pushRun, initialValues }: TaskDrawerProps) {
+export function TaskDrawer({ task, onClose, activeTicket, pushRun, initialValues, autoRun }: TaskDrawerProps) {
   const { t } = useLanguage();
-  const [values, setValues] = useState<TaskFormValues>(() => ({ ...defaultValues(task), ...initialValues } as TaskFormValues));
+  const seeded = { ...defaultValues(task), ...initialValues } as TaskFormValues;
+  // decided before any state so the drawer can open *already* in the console
+  // instead of painting the form for a frame and then replacing it
+  const startsRunning = !!autoRun && isTaskValid(task, seeded);
+
+  const [values, setValues] = useState<TaskFormValues>(seeded);
   const [touched, setTouched] = useState(false);
   const [showCmd, setShowCmd] = useState(false);
-  const [mode, setMode] = useState<"form" | "console">("form");
+  const [mode, setMode] = useState<"form" | "console">(startsRunning ? "console" : "form");
   const [logs, setLogs] = useState<LogLine[]>([]);
   const [runStatus, setRunStatus] = useState<RunStatus>("running");
   const [outputPath, setOutputPath] = useState("");
@@ -112,6 +124,22 @@ export function TaskDrawer({ task, onClose, activeTicket, pushRun, initialValues
       pushRun({ id: runId, taskId: task.id, taskLabel: task.label, category: task.category, status: "success", startedAt: new Date().toISOString(), ticket: activeTicket ? activeTicket.id : "—", outputPath: path || undefined, fieldValues: values, user: MDS_CONNECTION.user }, true);
     }, 650);
   }
+
+  // Fires the auto-run once per mount. The latch is released in the cleanup so
+  // it stays in step with the unmount effect below, which tears the interval
+  // down: a remount (React strict mode does one in development, and a real one
+  // would behave the same) then restarts the run instead of leaving it frozen
+  // on "running" with its timer already cleared.
+  const autoRunFired = useRef(false);
+  useEffect(() => {
+    if (!startsRunning || autoRunFired.current) return;
+    autoRunFired.current = true;
+    run();
+    return () => {
+      autoRunFired.current = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- run() is recreated every render; the latch is what keeps this to one call per mount
+  }, [startsRunning]);
 
   useEffect(() => {
     if (consoleRef.current) consoleRef.current.scrollTop = consoleRef.current.scrollHeight;

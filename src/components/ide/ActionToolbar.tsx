@@ -12,7 +12,7 @@ interface ActionToolbarProps {
   activePath: string | null;
   isDirty: boolean;
   onSave: () => void;
-  onOpenTask: (task: Task, initialValues?: Partial<TaskFormValues>) => void;
+  onOpenTask: (task: Task, options?: { initialValues?: Partial<TaskFormValues>; autoRun?: boolean }) => void;
 }
 
 const TASK_IDS = {
@@ -32,6 +32,14 @@ function ToolIcon({ name }: { name: "upload" | "package" }) {
   return <svg {...common}><path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5v-9Z" /><path d="M3.7 7.7 12 12l8.3-4.3M12 12v9" /></svg>;
 }
 
+/* The three "current file" buttons act on the tab in front of you: they seed
+   the task with that path and run it straight away, so the toolbar never
+   answers a click by asking which file you meant. Each stays disabled unless
+   the open tab is a file it can actually act on (.dbc to validate, .dbc/.sql
+   to run, autoscripts/*.py to upload), which is what keeps the seeded values
+   complete enough for the drawer to accept the auto-run. "Gerar DBC de
+   Automação" is deliberately not one of them — it consumes the whole
+   autoscripts folder, not the open file, so it keeps its confirm step. */
 export function ActionToolbar({ activePath, isDirty, onSave, onOpenTask }: ActionToolbarProps) {
   const { t } = useLanguage();
   const ext = activePath ? extOf(activePath) : "";
@@ -59,7 +67,7 @@ export function ActionToolbar({ activePath, isDirty, onSave, onOpenTask }: Actio
       <button
         className="ide-toolbar-btn"
         disabled={!validateTask || ext !== "dbc"}
-        onClick={() => validateTask && onOpenTask(validateTask, activePath ? { file: [activePath] } : undefined)}
+        onClick={() => validateTask && activePath && onOpenTask(validateTask, { initialValues: { file: [activePath] }, autoRun: true })}
         title={ext === "dbc" ? t("ideToolbar.validateTitleActive") : t("ideToolbar.validateTitleInactive")}
         data-od-id="ide-action-validate"
       >
@@ -69,7 +77,7 @@ export function ActionToolbar({ activePath, isDirty, onSave, onOpenTask }: Actio
       <button
         className="ide-toolbar-btn"
         disabled={!runTask || (ext !== "dbc" && ext !== "sql")}
-        onClick={() => runTask && onOpenTask(runTask, activePath ? { file: activePath } : undefined)}
+        onClick={() => runTask && activePath && onOpenTask(runTask, { initialValues: { file: activePath }, autoRun: true })}
         title={ext === "dbc" || ext === "sql" ? t("ideToolbar.runTitleActive") : t("ideToolbar.runTitleInactive")}
         data-od-id="ide-action-run"
       >
@@ -79,7 +87,7 @@ export function ActionToolbar({ activePath, isDirty, onSave, onOpenTask }: Actio
       <button
         className="ide-toolbar-btn"
         disabled={!updateTask || !isAutoscript}
-        onClick={() => updateTask && onOpenTask(updateTask)}
+        onClick={() => updateTask && activePath && onOpenTask(updateTask, { initialValues: { file: activePath }, autoRun: true })}
         title={isAutoscript ? t("ideToolbar.updateAutoscriptTitleActive") : t("ideToolbar.updateAutoscriptTitleInactive")}
         data-od-id="ide-action-update-autoscript"
       >
