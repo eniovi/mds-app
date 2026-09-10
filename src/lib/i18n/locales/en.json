@@ -1,0 +1,695 @@
+{
+  "common": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "close": "Close",
+    "finish": "Finish",
+    "back": "Back",
+    "remove": "Remove",
+    "file_one": "file",
+    "file_other": "files",
+    "selectAll": "Select all",
+    "loading": "loading…",
+    "yes": "Yes",
+    "no": "No",
+    "timeAgo": {
+      "now": "just now",
+      "minutes_one": "{{count}} min ago",
+      "minutes_other": "{{count}} min ago",
+      "hours_one": "{{count}}h ago",
+      "hours_other": "{{count}}h ago"
+    },
+    "edit": "Edit"
+  },
+  "topbar": {
+    "searchPlaceholder": "Search a task — e.g.: workflow, table, report…",
+    "filesLink": "Files",
+    "switchTicket": "switch",
+    "connected": "connected",
+    "environmentNotFound": "environment not found",
+    "loading": "…"
+  },
+  "context": {
+    "client": "Client",
+    "ticket": "Ticket",
+    "switch": "Switch",
+    "noClient": "No client",
+    "noTicket": "No ticket",
+    "noClientsAvailable": "No clients available.",
+    "noTicketsForClient": "This client has no tickets yet.",
+    "seeAllClients": "See all clients",
+    "seeAllTickets": "See all tickets"
+  },
+  "sidebar": {
+    "allTasks": "All tasks"
+  },
+  "userMenu": {
+    "manageEnvironments": "Manage Environments",
+    "logout": "Log out",
+    "language": "Language",
+    "languageAriaLabel": "Select language"
+  },
+  "login": {
+    "headline": "Continuity isn't luck. It's orchestration.",
+    "sub": "MDS is now a menu-driven panel — no more terminal commands. Pick a task, fill in what the environment already knows, and let us handle the orchestration.",
+    "proofTasks": "tasks turned into menus",
+    "proofCategories": "operational categories",
+    "proofCommands": "commands to memorize",
+    "enterTitle": "Sign in to MDS",
+    "enterLede": "Use your Maxinst corporate Microsoft account to continue.",
+    "signInButton": "Sign in with Microsoft",
+    "connecting": "Connecting to Microsoft…",
+    "authenticated": "✓ Authenticated",
+    "validating": "Validating credentials with Entra ID…",
+    "welcome": "Welcome, {{user}} · opening the dashboard…",
+    "restrictedAccess": "restricted to the Maxinst network",
+    "itSupport": "Trouble signing in? Contact the IT team."
+  },
+  "clients": {
+    "heading": "Select the client",
+    "intro": "Each client has its own tickets and Maximo/MAS environments. Pick one to start — you can switch at any time from the header.",
+    "searchPlaceholder": "Search client or segment…",
+    "noneFound": "No clients found.",
+    "noneFoundHint": "Check the search term, or ask the IT team for access to the client.",
+    "current": "Current",
+    "statTickets": "Tickets",
+    "statEnvironments": "Environments",
+    "enter": "Enter"
+  },
+  "home": {
+    "searchResults": "Results for \"{{query}}\"",
+    "tasksAvailable_one": "{{count}} task available",
+    "tasksAvailable_other": "{{count}} tasks available",
+    "noTasksFound": "No tasks found for this search.",
+    "recentActivity": "Recent activity",
+    "colTask": "Task",
+    "colTicket": "Ticket",
+    "colStatus": "Status",
+    "colWhen": "When",
+    "noRunsYet": "No runs yet this session."
+  },
+  "activity": {
+    "heading": "Recent Activity",
+    "collapse": "Collapse recent activity",
+    "expand": "Expand recent activity",
+    "emptyTitle": "No activity yet.",
+    "emptyDesc": "Run a task and it shows up here."
+  },
+  "tickets": {
+    "backToPanel": "Back to panel",
+    "heading": "Tickets",
+    "intro": "Each ticket isolates its own working folder in MDS. Choose an active ticket — the panel's tasks pick up that context automatically, without asking for the number every time.",
+    "newTicket": "+ New ticket",
+    "activeTicket": "Active ticket",
+    "searchPlaceholder": "Search by number or description…",
+    "colTicket": "Ticket",
+    "colEnvironment": "Environment",
+    "colStatus": "Status",
+    "colOwner": "Owner",
+    "colUpdated": "Updated",
+    "environmentRemoved": "environment removed",
+    "syncing": "Syncing…",
+    "syncRemote": "Update remote",
+    "active": "Active",
+    "select": "Select",
+    "noneFound": "No tickets found.",
+    "statusDone": "Done",
+    "statusInProgress": "In progress",
+    "statusBlocked": "Blocked",
+    "statusOpen": "Open",
+    "colCreated": "Created",
+    "switchClient": "Switch client",
+    "openWorkspace": "Open workspace"
+  },
+  "environments": {
+    "backToPanel": "Back to panel",
+    "heading": "Environments",
+    "intro": "Each environment is a different Maximo/MAS connection. Register it once here and choose which ticket uses which — no longer needed at login.",
+    "newEnvironment": "+ New environment",
+    "colName": "Name",
+    "colType": "Type",
+    "colConnection": "Connection",
+    "colVersion": "Version",
+    "colDatabase": "Database",
+    "colStatus": "Status",
+    "testing": "Testing…",
+    "testConnection": "Test connection",
+    "noneFound": "No environments registered yet.",
+    "confirmRemove": "Remove this environment? Tickets pointing to it will show \"environment removed\".",
+    "statusConnected": "Connected",
+    "statusFailed": "Failed",
+    "statusUntested": "Untested",
+    "editAria": "Edit environment {{name}}",
+    "removeAria": "Remove environment {{name}}",
+    "confirmRemoveTitle": "Remove environment?",
+    "confirmRemoveMessage": "{{name}} leaves this client's list. Tickets pointing to it will show \"environment removed\"."
+  },
+  "files": {
+    "backToPanel": "Back to panel",
+    "heading": "Ticket files",
+    "introEditor": "File editor for <1>{{ticket}}</1> — click a file on the left to open it.",
+    "introList": "Select .dbc/.sql files from <1>{{ticket}}</1> to validate or run in batch, without opening the editor.",
+    "loadingTicket": "Loading active ticket…",
+    "runQueueLink": "Run Queue",
+    "switchTicket": "Switch ticket",
+    "tabEditor": "Editor",
+    "tabList": "File List",
+    "colFile": "File",
+    "colGeneratedAt": "Generated at",
+    "colSize": "Size",
+    "emptyListTitle": "No .dbc/.sql files generated yet",
+    "emptyListDesc": "Run a task that generates or downloads .dbc/.sql files so you can validate or run them in batch here.",
+    "viewModeAria": "View mode"
+  },
+  "runQueue": {
+    "backToFiles": "Back to files",
+    "heading": "Run Queue",
+    "intro": "Select files from <1>{{ticket}}</1>, order the sequence, and run everything at once — no paths to type.",
+    "loadingTicket": "Loading active ticket…",
+    "tabQueue": "Queue",
+    "tabHistory": "Run History",
+    "workspaceNotice": "Files stay in the workspace for versioning via Bitbucket.",
+    "generatedFiles": "Generated files",
+    "selected_one": "{{count}} selected",
+    "selected_other": "{{count}} selected",
+    "executionSequence": "Execution sequence",
+    "inQueue_one": "{{count}} in queue",
+    "inQueue_other": "{{count}} in queue",
+    "executeButton_one": "Run ({{count}} file)",
+    "executeButton_other": "Run ({{count}} files)",
+    "colDateTime": "Date/Time",
+    "colTask": "Task",
+    "colTicket": "Ticket",
+    "colUser": "User",
+    "colStatus": "Status",
+    "viewErrorLogs": "View Error Logs",
+    "noErrorLog": "No error log recorded for this run.",
+    "noHistoryTitle": "No runs recorded yet",
+    "noHistoryDesc": "Run a task or a batch action to see the history here.",
+    "viewModeAria": "View mode"
+  },
+  "status": {
+    "success": "Success",
+    "running": "Running",
+    "error": "Error",
+    "queued": "Queued"
+  },
+  "taskDrawer": {
+    "noFields": "This task needs no parameters — it runs directly against the active ticket.",
+    "showCommand": "View equivalent command",
+    "hideCommand": "Hide command",
+    "backToForm": "Back to form",
+    "defaultAction": "Run",
+    "connecting": "Connecting to the mds container…",
+    "authenticated": "Authenticated on environment {{host}}",
+    "running": "Running: {{summary}}",
+    "completedOk": "✓ Completed with no errors.",
+    "resultSuccess": "Success",
+    "resultFile": "Generated file:",
+    "copyPath": "Copy path",
+    "noOutput": "Run completed — this task produces no output file.",
+    "unknownHost": "unknown"
+  },
+  "batch": {
+    "validateSelected_one": "Validate Selected ({{count}})",
+    "validateSelected_other": "Validate Selected ({{count}})",
+    "executeSelected_one": "Run Selected on Maximo ({{count}})",
+    "executeSelected_other": "Run Selected on Maximo ({{count}})",
+    "validateHint": "Select at least one .dbc file",
+    "reportTitle": "Run Report",
+    "successCount_one": "{{count}} completed successfully",
+    "successCount_other": "{{count}} completed successfully",
+    "errorCount_one": "{{count}} failure",
+    "errorCount_other": "{{count}} failures",
+    "viewErrorLogs": "View Error Logs",
+    "hideErrorLogs": "Hide error logs"
+  },
+  "batchRunDrawer": {
+    "verbValidating": "Validating",
+    "verbRunning": "Running",
+    "verbExecuting": "Running",
+    "doneValidated": "validated",
+    "doneExecuted": "run",
+    "doneCompleted": "completed",
+    "batchDone": "✓ Batch completed.",
+    "itemFailed": "✗ {{filename}} failed.",
+    "itemDone": "✓ {{filename}} {{doneWord}}."
+  },
+  "envTagPopover": {
+    "noneLinked": "No environment linked",
+    "changeEnvironment": "Change Environment",
+    "selectAria": "Select environment",
+    "manageLink": "Manage environments"
+  },
+  "fields": {
+    "selectFieldFirst": "First select the \"{{field}}\" field above.",
+    "appsDetected_one": "{{count}} app detected in the workspace",
+    "appsDetected_other": "{{count}} apps detected in the workspace",
+    "removeChipAria": "remove {{value}}",
+    "searchAndAdd": "Search and add…",
+    "search": "Search…",
+    "noExtractedApps": "No app extracted in this ticket yet.",
+    "noResults": "No results in the connected environment.",
+    "filePickerEmptyTitle": "No {{kind}}file generated yet",
+    "filePickerEmptyDesc": "Run an extraction or generation task to create {{kind}}files before choosing one here.",
+    "goToTaskPanel": "Go to task panel",
+    "searchByName": "Search by name…",
+    "noFileResults": "No file found for \"{{query}}\".",
+    "selectArtifactTypeFirst": "Select an artifact type above.",
+    "loadingArtifacts": "Loading artifacts from Maximo…",
+    "noArtifactsFound": "No artifact found in Maximo.",
+    "requiredField": "Required field."
+  },
+  "ideToolbar": {
+    "save": "Save Changes",
+    "saveTitle": "Save changes (Ctrl+S)",
+    "validate": "Validate Current File",
+    "validateTitleActive": "Validate this .dbc file",
+    "validateTitleInactive": "Available for .dbc files",
+    "run": "Run Current File",
+    "runTitleActive": "Run this file in Maximo",
+    "runTitleInactive": "Available for .dbc/.sql files",
+    "updateAutoscript": "Update Automation Script",
+    "updateAutoscriptTitleActive": "Upload this script's local version",
+    "updateAutoscriptTitleInactive": "Available for files in autoscripts/",
+    "generateDbc": "Generate Automation DBC",
+    "generateDbcTitle": "Converts everything in autoscripts/ into a single .dbc",
+    "unsavedChanges": "unsaved changes",
+    "closeTabAria": "Close {{name}}",
+    "loadingEditor": "Loading editor…",
+    "selectFileToOpen": "Select a file in the tree to open it.",
+    "noTextPreview": "No text preview for this {{kind}} (.{{ext}}).",
+    "downloadPackage": "Download the package from the <tickets>Tickets</tickets> or <environments>Environments</environments> screen.",
+    "resizePanelAria": "Resize file panel",
+    "emptyFolder": "empty",
+    "binaryKind": {
+      "zip": "compressed installation package",
+      "docx": "Word document",
+      "rptdesign": "BIRT report definition",
+      "default": "binary file"
+    }
+  },
+  "newEnvironmentModal": {
+    "nameLabel": "Environment Name",
+    "namePlaceholder": "e.g.: Acme Client — Staging",
+    "kindLabel": "Type",
+    "kindOther": "Other",
+    "hostLabel": "Host",
+    "hostPlaceholder": "e.g.: maximo-client.example.local",
+    "portLabel": "Port",
+    "dbLabel": "Database",
+    "dbUserLabel": "Database User",
+    "dbUserPlaceholder": "e.g.: maximo",
+    "dbPasswordLabel": "Database Password",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "maximoVersionLabel": "Maximo Version",
+    "createButton": "Register",
+    "securityAlert": "Stores only the connection address. Credentials stay in the container's <code>.credentials.env</code> — never here."
+  },
+  "environmentModal": {
+    "createTitle": "Register environment",
+    "editTitle": "Edit environment",
+    "appUserLabel": "Application user (Maximo)",
+    "appUserPlaceholder": "e.g.: maxadmin",
+    "appUserHint": "Username only — the password stays in the container's .credentials.env."
+  },
+  "newTicketModal": {
+    "title": "Create new ticket",
+    "subtitle": "Creates the MDS project folder structure for this ticket.",
+    "idLabel": "Ticket number",
+    "idPlaceholder": "e.g.: MDS-1050",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "e.g.: SR escalation adjustment",
+    "environmentLabel": "Environment",
+    "addEnvironmentLink": "+ register new environment",
+    "noDescription": "No description",
+    "createButton": "Create ticket"
+  },
+  "queue": {
+    "sourceEmpty": "No file generated in this ticket yet — run a task first.",
+    "emptyQueue": "No file selected yet — check files on the left to build the queue.",
+    "moveFolderUpAria": "Move folder {{dir}} up",
+    "moveFolderDownAria": "Move folder {{dir}} down",
+    "moveGroupUpTitle": "Move group up",
+    "moveGroupDownTitle": "Move group down",
+    "moveFileUpAria": "Move {{filename}} up",
+    "moveFileDownAria": "Move {{filename}} down",
+    "removeFileAria": "Remove {{filename}} from queue"
+  },
+  "revision": {
+    "active": "Active",
+    "enabled": "Enabled",
+    "inactive": "Inactive",
+    "selectProcessFirst": "Select a process first",
+    "revisionNumber": "Revision {{number}}",
+    "latestDefault": "Latest (default)"
+  },
+  "catalog": {
+    "categories": {
+      "db": { "label": "Database", "hint": "Tables, attributes, indexes, domains, relationships" },
+      "apps": { "label": "Applications & Screens", "hint": "Apps, menus, presentation, conditional properties" },
+      "automation": { "label": "Automation & Flow", "hint": "Scripts, workflows, escalations, actions" },
+      "security": { "label": "Security & Access", "hint": "Security and person groups" },
+      "comms": { "label": "Communication", "hint": "System templates and messages" },
+      "reports": { "label": "Reports (BIRT)", "hint": "Report extraction and import" },
+      "integration": { "label": "Integration", "hint": "MIF objects (web services, channels)" },
+      "system": { "label": "System", "hint": "Global environment properties" },
+      "ticket": { "label": "Packaging & Ticket", "hint": "Install package, run, and workspace" }
+    },
+    "tasks": {
+      "apply-presentation-diff": {
+        "label": "Apply Presentation Diff",
+        "detail": "Applies the screen diff (.mxs) on top of the current presentation.",
+        "fields": {
+          "file": { "label": ".mxs file" }
+        }
+      },
+      "download-autoscripts": {
+        "label": "Download Automation Scripts",
+        "detail": "Extracts one or more automation scripts from the environment to the local project.",
+        "fields": {
+          "scripts": { "label": "Automation scripts" }
+        }
+      },
+      "extract-action-group": {
+        "label": "Extract Action Group",
+        "detail": "Generates a .dbc with one or more action groups.",
+        "fields": {
+          "actionGroups": { "label": "Action groups" }
+        }
+      },
+      "extract-actions": {
+        "label": "Extract Actions",
+        "detail": "Generates a .dbc with one or more actions.",
+        "fields": {
+          "actions": { "label": "Actions" }
+        }
+      },
+      "extract-app": {
+        "label": "Extract Application",
+        "detail": "Extracts all artifacts of an application.",
+        "fields": {
+          "app": { "label": "Application" }
+        }
+      },
+      "extract-attributes": {
+        "label": "Extract Attributes",
+        "detail": "Extracts database attributes and related configuration (LookupMaps, indexes).",
+        "fields": {
+          "object": { "label": "Object" },
+          "attributes": { "label": "Attributes" },
+          "extractDomains": { "label": "Extract associated domains?" }
+        }
+      },
+      "extract-birt-reports": {
+        "label": "Extract BIRT Reports",
+        "detail": "Extracts a specific BIRT report from an application.",
+        "fields": {
+          "app": { "label": "Application" },
+          "report": { "label": "Report" }
+        }
+      },
+      "extract-comm-template": {
+        "label": "Extract Communication Template",
+        "detail": "Extracts one or more communication templates.",
+        "fields": {
+          "templates": { "label": "Templates" }
+        }
+      },
+      "extract-conditional-expression": {
+        "label": "Extract Conditional Expression",
+        "detail": "Extracts conditional expressions from the environment.",
+        "fields": {
+          "conditions": { "label": "Conditional expressions" }
+        }
+      },
+      "extract-conditional-properties": {
+        "label": "Extract Conditional Properties",
+        "detail": "Extracts conditional properties linked to a signature option.",
+        "fields": {
+          "app": { "label": "Application" },
+          "sig": { "label": "Signature option" }
+        }
+      },
+      "extract-domains": {
+        "label": "Extract Domains",
+        "detail": "Extracts specific database domains.",
+        "fields": {
+          "domains": { "label": "Domains" }
+        }
+      },
+      "extract-escalation": {
+        "label": "Extract Escalation",
+        "detail": "Extracts one or more escalations.",
+        "fields": {
+          "escalations": { "label": "Escalations" }
+        }
+      },
+      "extract-global-restriction": {
+        "label": "Extract Global Restriction",
+        "detail": "Extracts the global restriction by application, object, and attribute.",
+        "fields": {
+          "object": { "label": "Object" },
+          "app": { "label": "Application" },
+          "attribute": { "label": "Attribute" },
+          "condition": { "label": "Extract conditional expression?" }
+        }
+      },
+      "extract-indexes": {
+        "label": "Extract Indexes",
+        "detail": "Extracts database indexes for a specific object.",
+        "fields": {
+          "object": { "label": "Object" },
+          "indexes": { "label": "Indexes", "hint": "Leave blank to extract all indexes for the object." }
+        }
+      },
+      "extract-menu": {
+        "label": "Extract Menu",
+        "detail": "Extracts menus created for an application.",
+        "fields": {
+          "app": { "label": "Application" },
+          "menuType": { "label": "Menu type" }
+        }
+      },
+      "extract-mif-object-structure": {
+        "label": "Extract Object Structure",
+        "detail": "Extracts one or more MIF object structures.",
+        "fields": {
+          "artifactValue": { "label": "Object structures" },
+          "extractDependencies": { "label": "Extract related dependencies?" }
+        }
+      },
+      "extract-mif-endpoint": {
+        "label": "Extract End Point",
+        "detail": "Extracts one or more MIF end points.",
+        "fields": {
+          "artifactValue": { "label": "End points" },
+          "extractDependencies": { "label": "Extract related dependencies?" }
+        }
+      },
+      "extract-mif-web-service": {
+        "label": "Extract Web Service",
+        "detail": "Extracts one or more MIF web services.",
+        "fields": {
+          "artifactValue": { "label": "Web services" },
+          "extractDependencies": { "label": "Extract related dependencies?" }
+        }
+      },
+      "extract-mif-enterprise-service": {
+        "label": "Extract Enterprise Service",
+        "detail": "Extracts one or more MIF enterprise services.",
+        "fields": {
+          "artifactValue": { "label": "Enterprise services" },
+          "extractDependencies": { "label": "Extract related dependencies?" }
+        }
+      },
+      "extract-mif-external-system": {
+        "label": "Extract External System",
+        "detail": "Extracts one or more MIF external systems.",
+        "fields": {
+          "artifactValue": { "label": "External systems" },
+          "extractDependencies": { "label": "Extract related dependencies?" }
+        }
+      },
+      "extract-mif-publish-channel": {
+        "label": "Extract Publish Channel",
+        "detail": "Extracts one or more MIF publish channels.",
+        "fields": {
+          "artifactValue": { "label": "Publish channels" },
+          "extractDependencies": { "label": "Extract related dependencies?" }
+        }
+      },
+      "extract-mif-invoke-channel": {
+        "label": "Extract Invoke Channel",
+        "detail": "Extracts one or more MIF invoke channels.",
+        "fields": {
+          "artifactValue": { "label": "Invoke channels" },
+          "extractDependencies": { "label": "Extract related dependencies?" }
+        }
+      },
+      "extract-mif-oslc-resources": {
+        "label": "Extract OSLC Resources",
+        "detail": "Extracts one or more MIF OSLC resources.",
+        "fields": {
+          "artifactValue": { "label": "OSLC resources" },
+          "extractDependencies": { "label": "Extract related dependencies?" }
+        }
+      },
+      "extract-mif-json-resources": {
+        "label": "Extract JSON Resources",
+        "detail": "Extracts one or more MIF JSON resources.",
+        "fields": {
+          "artifactValue": { "label": "JSON resources" },
+          "extractDependencies": { "label": "Extract related dependencies?" }
+        }
+      },
+      "extract-person-groups": {
+        "label": "Extract Person Groups",
+        "detail": "Extracts one or more Person Groups.",
+        "fields": {
+          "groups": { "label": "Person groups" }
+        }
+      },
+      "extract-presentation": {
+        "label": "Extract Presentation",
+        "detail": "Extracts the presentation XML for one or more applications.",
+        "fields": {
+          "xmlVersion": {
+            "label": "XML version",
+            "options": { "original": "Original", "changes": "Changes" }
+          },
+          "app": { "label": "Applications" }
+        }
+      },
+      "extract-relationships": {
+        "label": "Extract Relationships",
+        "detail": "Extracts relationships for a parent object.",
+        "fields": {
+          "parentObject": { "label": "Parent object" },
+          "relationships": { "label": "Relationships", "hint": "Leave blank to extract all relationships for the object." }
+        }
+      },
+      "extract-security-group": {
+        "label": "Extract Security Group",
+        "detail": "Extracts one or more security groups.",
+        "fields": {
+          "groups": { "label": "Security groups" }
+        }
+      },
+      "extract-signature-options": {
+        "label": "Extract Signature Options",
+        "detail": "Extracts signature options (sigoptions) for an application.",
+        "fields": {
+          "app": { "label": "Application" },
+          "sig": { "label": "Signature options" }
+        }
+      },
+      "extract-start-center": {
+        "label": "Extract Start Center",
+        "detail": "Extracts one or more Start Centers.",
+        "fields": {
+          "template": { "label": "Start Center template" },
+          "groups": { "label": "Person groups" }
+        }
+      },
+      "extract-system-properties": {
+        "label": "Extract System Properties",
+        "detail": "Extracts one or more system properties.",
+        "fields": {
+          "props": { "label": "Properties" }
+        }
+      },
+      "extract-tables": {
+        "label": "Extract Tables",
+        "detail": "Extracts one or more tables, along with relationships and indexes.",
+        "fields": {
+          "tables": { "label": "Tables" },
+          "extractDomain": { "label": "Extract attribute domains?" }
+        }
+      },
+      "extract-messages": {
+        "label": "Extract Messages",
+        "detail": "Extracts messages from a specific group.",
+        "fields": {
+          "group": { "label": "Message group" },
+          "keys": { "label": "Message keys", "hint": "Leave blank to extract all messages in the group." }
+        }
+      },
+      "extract-workflow": {
+        "label": "Extract Workflow",
+        "detail": "Extracts a specific workflow process.",
+        "fields": {
+          "process": { "label": "Process" },
+          "revision": { "label": "Revision", "hint": "leave blank for the latest" },
+          "subprocess": { "label": "Extract subprocesses?" }
+        }
+      },
+      "generate-dbc-autoscript": { "label": "Generate Automation DBC", "detail": "Converts all scripts in the local autoscripts folder into a single .dbc file." },
+      "generate-new-ticket": {
+        "label": "Generate New Ticket",
+        "detail": "Creates the project folder structure for a new ticket.",
+        "fields": {
+          "ticketNumber": { "label": "Ticket number", "placeholder": "e.g.: MDS-1050" }
+        }
+      },
+      "generate-package": {
+        "label": "Generate Package",
+        "detail": "Creates the complete package with all artifacts for installation.",
+        "fields": {
+          "os": {
+            "label": "Target operating system",
+            "options": { "linux": "Linux", "windows": "Windows" }
+          },
+          "includeDoc": { "label": "Include technical documentation?" },
+          "includeAutoscript": { "label": "Include automation DBC?" },
+          "includeDiff": { "label": "Include screen diffs?" },
+          "includeReport": { "label": "Include reports?" },
+          "language": {
+            "label": "Package language",
+            "options": { "pt-BR": "Portuguese (BR)", "en": "English" }
+          }
+        }
+      },
+      "generate-presentation-diff": {
+        "label": "Generate Presentation Diff",
+        "detail": "Creates .mxs files from the presentations/original and presentations/changes folders.",
+        "fields": {
+          "apps": { "label": "Applications", "hint": "Only apps already extracted in this ticket appear here. Leave blank to include all." }
+        }
+      },
+      "generate-tech-document": { "label": "Generate Technical Document", "detail": "Generates the project's technical documentation from the active ticket." },
+      "import-birt-reports": {
+        "label": "Import BIRT Reports",
+        "detail": "Imports a specific BIRT report into the given application.",
+        "fields": {
+          "app": { "label": "Application" },
+          "report": { "label": "Report" }
+        }
+      },
+      "run-script-file": {
+        "label": "Run .dbc/.sql on Maximo",
+        "detail": "Runs the selected .dbc/.sql file inside the MDS container.",
+        "fields": {
+          "file": { "label": ".dbc/.sql file" }
+        }
+      },
+      "update-autoscript": {
+        "label": "Update Automation Script",
+        "detail": "Uploads the local version of an automation script to the environment.",
+        "fields": {
+          "script": { "label": "Automation script" }
+        }
+      },
+      "update-remote-ticket": { "label": "Update Remote Ticket", "detail": "Syncs the entire active ticket project with the remote repository." },
+      "validate-dbc-file": {
+        "label": "Validate DBC File",
+        "detail": "Validates one or more already-generated .dbc files and reports any errors found.",
+        "actionLabel": "Validate Selected",
+        "fields": {
+          "file": { "label": ".dbc files" }
+        }
+      }
+    }
+  }
+}

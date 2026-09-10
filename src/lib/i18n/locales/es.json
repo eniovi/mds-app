@@ -1,0 +1,695 @@
+{
+  "common": {
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "close": "Cerrar",
+    "finish": "Finalizar",
+    "back": "Volver",
+    "remove": "Eliminar",
+    "file_one": "archivo",
+    "file_other": "archivos",
+    "selectAll": "Seleccionar todos",
+    "loading": "cargando…",
+    "yes": "Sí",
+    "no": "No",
+    "timeAgo": {
+      "now": "ahora",
+      "minutes_one": "hace {{count}} min",
+      "minutes_other": "hace {{count}} min",
+      "hours_one": "hace {{count}}h",
+      "hours_other": "hace {{count}}h"
+    },
+    "edit": "Editar"
+  },
+  "topbar": {
+    "searchPlaceholder": "Buscar tarea — ej.: workflow, tabla, informe…",
+    "filesLink": "Archivos",
+    "switchTicket": "cambiar",
+    "connected": "conectado",
+    "environmentNotFound": "entorno no encontrado",
+    "loading": "…"
+  },
+  "context": {
+    "client": "Cliente",
+    "ticket": "Ticket",
+    "switch": "Cambiar",
+    "noClient": "Ningún cliente",
+    "noTicket": "Ningún ticket",
+    "noClientsAvailable": "Ningún cliente disponible.",
+    "noTicketsForClient": "Este cliente aún no tiene tickets.",
+    "seeAllClients": "Ver todos los clientes",
+    "seeAllTickets": "Ver todos los tickets"
+  },
+  "sidebar": {
+    "allTasks": "Todas las tareas"
+  },
+  "userMenu": {
+    "manageEnvironments": "Gestionar Entornos",
+    "logout": "Cerrar sesión",
+    "language": "Idioma",
+    "languageAriaLabel": "Seleccionar idioma"
+  },
+  "login": {
+    "headline": "La continuidad no es suerte. Es orquestación.",
+    "sub": "MDS ahora es un panel de menús — ya no más comandos en la terminal. Elige una tarea, completa lo que el entorno ya sabe y deja la orquestación con nosotros.",
+    "proofTasks": "tareas convertidas en menú",
+    "proofCategories": "categorías operativas",
+    "proofCommands": "comandos para memorizar",
+    "enterTitle": "Iniciar sesión en MDS",
+    "enterLede": "Usa la cuenta Microsoft corporativa de Maxinst para continuar.",
+    "signInButton": "Iniciar sesión con Microsoft",
+    "connecting": "Conectando con Microsoft…",
+    "authenticated": "✓ Autenticado",
+    "validating": "Validando credenciales en Entra ID…",
+    "welcome": "Bienvenido/a, {{user}} · abriendo el panel…",
+    "restrictedAccess": "acceso restringido a la red Maxinst",
+    "itSupport": "¿Problemas para acceder? Contacta al equipo de TI."
+  },
+  "clients": {
+    "heading": "Selecciona el cliente",
+    "intro": "Cada cliente tiene sus propios tickets y entornos Maximo/MAS. Elige uno para empezar — puedes cambiar en cualquier momento desde el encabezado.",
+    "searchPlaceholder": "Buscar cliente o segmento…",
+    "noneFound": "Ningún cliente encontrado.",
+    "noneFoundHint": "Revisa el término de búsqueda o pide acceso al cliente al equipo de TI.",
+    "current": "Actual",
+    "statTickets": "Tickets",
+    "statEnvironments": "Entornos",
+    "enter": "Entrar"
+  },
+  "home": {
+    "searchResults": "Resultados para \"{{query}}\"",
+    "tasksAvailable_one": "{{count}} tarea disponible",
+    "tasksAvailable_other": "{{count}} tareas disponibles",
+    "noTasksFound": "No se encontraron tareas para esta búsqueda.",
+    "recentActivity": "Actividad reciente",
+    "colTask": "Tarea",
+    "colTicket": "Ticket",
+    "colStatus": "Estado",
+    "colWhen": "Cuándo",
+    "noRunsYet": "Ninguna ejecución todavía en esta sesión."
+  },
+  "activity": {
+    "heading": "Actividades Recientes",
+    "collapse": "Contraer actividades recientes",
+    "expand": "Expandir actividades recientes",
+    "emptyTitle": "Ninguna actividad todavía.",
+    "emptyDesc": "Ejecuta una tarea y aparecerá aquí."
+  },
+  "tickets": {
+    "backToPanel": "Volver al panel",
+    "heading": "Tickets",
+    "intro": "Cada ticket aísla su propia carpeta de trabajo en MDS. Elige un ticket activo — las tareas del panel usan ese contexto automáticamente, sin pedir el número cada vez.",
+    "newTicket": "+ Nuevo ticket",
+    "activeTicket": "Ticket activo",
+    "searchPlaceholder": "Buscar por número o descripción…",
+    "colTicket": "Ticket",
+    "colEnvironment": "Entorno",
+    "colStatus": "Estado",
+    "colOwner": "Responsable",
+    "colUpdated": "Actualizado",
+    "environmentRemoved": "entorno eliminado",
+    "syncing": "Sincronizando…",
+    "syncRemote": "Actualizar remoto",
+    "active": "Activo",
+    "select": "Seleccionar",
+    "noneFound": "No se encontraron tickets.",
+    "statusDone": "Completado",
+    "statusInProgress": "En curso",
+    "statusBlocked": "Bloqueado",
+    "statusOpen": "Abierto",
+    "colCreated": "Creado",
+    "switchClient": "Cambiar cliente",
+    "openWorkspace": "Abrir workspace"
+  },
+  "environments": {
+    "backToPanel": "Volver al panel",
+    "heading": "Entornos",
+    "intro": "Cada entorno es una conexión Maximo/MAS diferente. Regístralo una vez aquí y elige qué ticket usa cuál — ya no es necesario elegirlo al iniciar sesión.",
+    "newEnvironment": "+ Nuevo entorno",
+    "colName": "Nombre",
+    "colType": "Tipo",
+    "colConnection": "Conexión",
+    "colVersion": "Versión",
+    "colDatabase": "Base de datos",
+    "colStatus": "Estado",
+    "testing": "Probando…",
+    "testConnection": "Probar conexión",
+    "noneFound": "Todavía no hay entornos registrados.",
+    "confirmRemove": "¿Eliminar este entorno? Los tickets que lo referencian mostrarán \"entorno eliminado\".",
+    "statusConnected": "Conectado",
+    "statusFailed": "Falló",
+    "statusUntested": "Sin probar",
+    "editAria": "Editar entorno {{name}}",
+    "removeAria": "Eliminar entorno {{name}}",
+    "confirmRemoveTitle": "¿Eliminar entorno?",
+    "confirmRemoveMessage": "{{name}} sale de la lista de este cliente. Los tickets que apuntan a él mostrarán \"entorno eliminado\"."
+  },
+  "files": {
+    "backToPanel": "Volver al panel",
+    "heading": "Archivos del ticket",
+    "introEditor": "Editor de archivos para <1>{{ticket}}</1> — haz clic en un archivo a la izquierda para abrirlo.",
+    "introList": "Selecciona archivos .dbc/.sql de <1>{{ticket}}</1> para validar o ejecutar en lote, sin abrir el editor.",
+    "loadingTicket": "Cargando ticket activo…",
+    "runQueueLink": "Cola de Ejecución",
+    "switchTicket": "Cambiar ticket",
+    "tabEditor": "Editor",
+    "tabList": "Lista de Archivos",
+    "colFile": "Archivo",
+    "colGeneratedAt": "Fecha de generación",
+    "colSize": "Tamaño",
+    "emptyListTitle": "Todavía no hay archivos .dbc/.sql generados",
+    "emptyListDesc": "Ejecuta una tarea que genere o descargue archivos .dbc/.sql para poder validarlos o ejecutarlos en lote aquí.",
+    "viewModeAria": "Modo de visualización"
+  },
+  "runQueue": {
+    "backToFiles": "Volver a archivos",
+    "heading": "Cola de Ejecución",
+    "intro": "Selecciona archivos de <1>{{ticket}}</1>, ordena la secuencia y ejecuta todo de una vez — sin escribir ninguna ruta.",
+    "loadingTicket": "Cargando ticket activo…",
+    "tabQueue": "Cola",
+    "tabHistory": "Historial de Ejecuciones",
+    "workspaceNotice": "Los archivos permanecen en el workspace para versionado vía Bitbucket.",
+    "generatedFiles": "Archivos generados",
+    "selected_one": "{{count}} seleccionado",
+    "selected_other": "{{count}} seleccionados",
+    "executionSequence": "Secuencia de ejecución",
+    "inQueue_one": "{{count}} en cola",
+    "inQueue_other": "{{count}} en cola",
+    "executeButton_one": "Ejecutar ({{count}} archivo)",
+    "executeButton_other": "Ejecutar ({{count}} archivos)",
+    "colDateTime": "Fecha/Hora",
+    "colTask": "Tarea",
+    "colTicket": "Ticket",
+    "colUser": "Usuario",
+    "colStatus": "Estado",
+    "viewErrorLogs": "Ver Registros de Error",
+    "noErrorLog": "No hay registro de error para esta ejecución.",
+    "noHistoryTitle": "Todavía no hay ejecuciones registradas",
+    "noHistoryDesc": "Ejecuta una tarea o una acción en lote para ver el historial aquí.",
+    "viewModeAria": "Modo de visualización"
+  },
+  "status": {
+    "success": "Éxito",
+    "running": "En ejecución",
+    "error": "Error",
+    "queued": "En cola"
+  },
+  "taskDrawer": {
+    "noFields": "Esta tarea no necesita parámetros — se ejecuta directamente sobre el ticket activo.",
+    "showCommand": "Ver comando equivalente",
+    "hideCommand": "Ocultar comando",
+    "backToForm": "Volver al formulario",
+    "defaultAction": "Ejecutar",
+    "connecting": "Conectando al contenedor mds…",
+    "authenticated": "Autenticado en el entorno {{host}}",
+    "running": "Ejecutando: {{summary}}",
+    "completedOk": "✓ Completado sin errores.",
+    "resultSuccess": "Éxito",
+    "resultFile": "Archivo generado:",
+    "copyPath": "Copiar ruta",
+    "noOutput": "Ejecución completada — esta tarea no produce archivo de salida.",
+    "unknownHost": "desconocido"
+  },
+  "batch": {
+    "validateSelected_one": "Validar Seleccionados ({{count}})",
+    "validateSelected_other": "Validar Seleccionados ({{count}})",
+    "executeSelected_one": "Ejecutar Seleccionados en Maximo ({{count}})",
+    "executeSelected_other": "Ejecutar Seleccionados en Maximo ({{count}})",
+    "validateHint": "Selecciona al menos un archivo .dbc",
+    "reportTitle": "Informe de Ejecución",
+    "successCount_one": "{{count}} ejecutado con éxito",
+    "successCount_other": "{{count}} ejecutados con éxito",
+    "errorCount_one": "{{count}} falla",
+    "errorCount_other": "{{count}} fallas",
+    "viewErrorLogs": "Ver Registros de Error",
+    "hideErrorLogs": "Ocultar registros de error"
+  },
+  "batchRunDrawer": {
+    "verbValidating": "Validando",
+    "verbRunning": "Ejecutando",
+    "verbExecuting": "Ejecutando",
+    "doneValidated": "validado",
+    "doneExecuted": "ejecutado",
+    "doneCompleted": "completado",
+    "batchDone": "✓ Lote completado.",
+    "itemFailed": "✗ {{filename}} falló.",
+    "itemDone": "✓ {{filename}} {{doneWord}}."
+  },
+  "envTagPopover": {
+    "noneLinked": "Ningún entorno vinculado",
+    "changeEnvironment": "Cambiar Entorno",
+    "selectAria": "Seleccionar entorno",
+    "manageLink": "Gestionar entornos"
+  },
+  "fields": {
+    "selectFieldFirst": "Selecciona primero el campo \"{{field}}\" arriba.",
+    "appsDetected_one": "{{count}} aplicación detectada en el workspace",
+    "appsDetected_other": "{{count}} aplicaciones detectadas en el workspace",
+    "removeChipAria": "quitar {{value}}",
+    "searchAndAdd": "Buscar y agregar…",
+    "search": "Buscar…",
+    "noExtractedApps": "Ningún app extraído en este ticket todavía.",
+    "noResults": "Ningún resultado en el entorno conectado.",
+    "filePickerEmptyTitle": "Ningún archivo {{kind}}generado aún",
+    "filePickerEmptyDesc": "Ejecuta una tarea de extracción o generación para crear archivos {{kind}}antes de elegir uno aquí.",
+    "goToTaskPanel": "Ir al panel de tareas",
+    "searchByName": "Buscar por nombre…",
+    "noFileResults": "Ningún archivo encontrado para \"{{query}}\".",
+    "selectArtifactTypeFirst": "Selecciona un tipo de artefacto arriba.",
+    "loadingArtifacts": "Cargando artefactos de Maximo…",
+    "noArtifactsFound": "Ningún artefacto encontrado en Maximo.",
+    "requiredField": "Campo obligatorio."
+  },
+  "ideToolbar": {
+    "save": "Guardar Cambios",
+    "saveTitle": "Guardar cambios (Ctrl+S)",
+    "validate": "Validar Archivo Actual",
+    "validateTitleActive": "Validar este archivo .dbc",
+    "validateTitleInactive": "Disponible para archivos .dbc",
+    "run": "Ejecutar Archivo Actual",
+    "runTitleActive": "Ejecutar este archivo en Maximo",
+    "runTitleInactive": "Disponible para archivos .dbc/.sql",
+    "updateAutoscript": "Actualizar Script de Automatización",
+    "updateAutoscriptTitleActive": "Enviar la versión local de este script",
+    "updateAutoscriptTitleInactive": "Disponible para archivos en autoscripts/",
+    "generateDbc": "Generar DBC de Automatización",
+    "generateDbcTitle": "Convierte todo en autoscripts/ en un único .dbc",
+    "unsavedChanges": "cambios sin guardar",
+    "closeTabAria": "Cerrar {{name}}",
+    "loadingEditor": "Cargando editor…",
+    "selectFileToOpen": "Selecciona un archivo en el árbol para abrirlo.",
+    "noTextPreview": "Sin vista previa de texto para este {{kind}} (.{{ext}}).",
+    "downloadPackage": "Descarga el paquete desde la pantalla de <tickets>Tickets</tickets> o <environments>Entornos</environments>.",
+    "resizePanelAria": "Redimensionar panel de archivos",
+    "emptyFolder": "vacía",
+    "binaryKind": {
+      "zip": "paquete de instalación comprimido",
+      "docx": "documento Word",
+      "rptdesign": "definición de informe BIRT",
+      "default": "archivo binario"
+    }
+  },
+  "newEnvironmentModal": {
+    "nameLabel": "Nombre del Entorno",
+    "namePlaceholder": "ej.: Cliente Acme — Homologación",
+    "kindLabel": "Tipo",
+    "kindOther": "Otro",
+    "hostLabel": "Host",
+    "hostPlaceholder": "ej.: maximo-cliente.ejemplo.local",
+    "portLabel": "Puerto",
+    "dbLabel": "Base de datos",
+    "dbUserLabel": "Usuario de la Base de Datos",
+    "dbUserPlaceholder": "ej.: maximo",
+    "dbPasswordLabel": "Contraseña de la Base de Datos",
+    "showPassword": "Mostrar contraseña",
+    "hidePassword": "Ocultar contraseña",
+    "maximoVersionLabel": "Versión de Maximo",
+    "createButton": "Registrar",
+    "securityAlert": "Guarda solo la dirección de conexión. Las credenciales permanecen en el <code>.credentials.env</code> del contenedor — nunca aquí."
+  },
+  "environmentModal": {
+    "createTitle": "Registrar entorno",
+    "editTitle": "Editar entorno",
+    "appUserLabel": "Usuario de la aplicación (Maximo)",
+    "appUserPlaceholder": "ej.: maxadmin",
+    "appUserHint": "Solo el nombre de usuario — la contraseña permanece en el .credentials.env del contenedor."
+  },
+  "newTicketModal": {
+    "title": "Generar nuevo ticket",
+    "subtitle": "Crea la estructura de carpetas del proyecto en el MDS para este ticket.",
+    "idLabel": "Número de ticket",
+    "idPlaceholder": "ej.: MDS-1050",
+    "descriptionLabel": "Descripción",
+    "descriptionPlaceholder": "ej.: Ajuste de escalado de SR",
+    "environmentLabel": "Entorno",
+    "addEnvironmentLink": "+ registrar nuevo entorno",
+    "noDescription": "Sin descripción",
+    "createButton": "Crear ticket"
+  },
+  "queue": {
+    "sourceEmpty": "Ningún archivo generado en este ticket todavía — ejecuta una tarea primero.",
+    "emptyQueue": "Ningún archivo seleccionado todavía — marca archivos a la izquierda para armar la cola.",
+    "moveFolderUpAria": "Mover carpeta {{dir}} hacia arriba",
+    "moveFolderDownAria": "Mover carpeta {{dir}} hacia abajo",
+    "moveGroupUpTitle": "Mover grupo hacia arriba",
+    "moveGroupDownTitle": "Mover grupo hacia abajo",
+    "moveFileUpAria": "Mover {{filename}} hacia arriba",
+    "moveFileDownAria": "Mover {{filename}} hacia abajo",
+    "removeFileAria": "Quitar {{filename}} de la cola"
+  },
+  "revision": {
+    "active": "Activa",
+    "enabled": "Habilitada",
+    "inactive": "Inactiva",
+    "selectProcessFirst": "Selecciona un proceso primero",
+    "revisionNumber": "Revisión {{number}}",
+    "latestDefault": "Más reciente (predeterminado)"
+  },
+  "catalog": {
+    "categories": {
+      "db": { "label": "Base de Datos", "hint": "Tablas, atributos, índices, dominios, relaciones" },
+      "apps": { "label": "Aplicaciones & Pantallas", "hint": "Apps, menús, presentación, propiedades condicionales" },
+      "automation": { "label": "Automatización & Flujo", "hint": "Scripts, workflows, escalamientos, acciones" },
+      "security": { "label": "Seguridad & Acceso", "hint": "Grupos de seguridad y de personas" },
+      "comms": { "label": "Comunicación", "hint": "Plantillas y mensajes del sistema" },
+      "reports": { "label": "Informes (BIRT)", "hint": "Extracción e importación de informes" },
+      "integration": { "label": "Integración", "hint": "Objetos MIF (web services, canales)" },
+      "system": { "label": "Sistema", "hint": "Propiedades globales del entorno" },
+      "ticket": { "label": "Empaquetado & Ticket", "hint": "Paquete de instalación, ejecución y workspace" }
+    },
+    "tasks": {
+      "apply-presentation-diff": {
+        "label": "Aplicar Diferencia de Presentación",
+        "detail": "Aplica la diferencia de pantalla (.mxs) sobre la presentación actual.",
+        "fields": {
+          "file": { "label": "Archivo .mxs" }
+        }
+      },
+      "download-autoscripts": {
+        "label": "Descargar Scripts de Automatización",
+        "detail": "Extrae uno o más scripts de automatización del entorno al proyecto local.",
+        "fields": {
+          "scripts": { "label": "Scripts de automatización" }
+        }
+      },
+      "extract-action-group": {
+        "label": "Extraer Grupo de Acciones",
+        "detail": "Genera un .dbc con uno o más grupos de acciones.",
+        "fields": {
+          "actionGroups": { "label": "Grupos de acciones" }
+        }
+      },
+      "extract-actions": {
+        "label": "Extraer Acciones",
+        "detail": "Genera un .dbc con una o más acciones.",
+        "fields": {
+          "actions": { "label": "Acciones" }
+        }
+      },
+      "extract-app": {
+        "label": "Extraer Aplicación",
+        "detail": "Extrae todos los artefactos de una aplicación.",
+        "fields": {
+          "app": { "label": "Aplicación" }
+        }
+      },
+      "extract-attributes": {
+        "label": "Extraer Atributos",
+        "detail": "Extrae atributos de base de datos y configuraciones relacionadas (LookupMaps, índices).",
+        "fields": {
+          "object": { "label": "Objeto" },
+          "attributes": { "label": "Atributos" },
+          "extractDomains": { "label": "¿Extraer dominios asociados?" }
+        }
+      },
+      "extract-birt-reports": {
+        "label": "Extraer Informes BIRT",
+        "detail": "Extrae un informe BIRT específico de una aplicación.",
+        "fields": {
+          "app": { "label": "Aplicación" },
+          "report": { "label": "Informe" }
+        }
+      },
+      "extract-comm-template": {
+        "label": "Extraer Plantilla de Comunicación",
+        "detail": "Extrae una o más plantillas de comunicación.",
+        "fields": {
+          "templates": { "label": "Plantillas" }
+        }
+      },
+      "extract-conditional-expression": {
+        "label": "Extraer Expresión Condicional",
+        "detail": "Extrae expresiones condicionales del entorno.",
+        "fields": {
+          "conditions": { "label": "Expresiones condicionales" }
+        }
+      },
+      "extract-conditional-properties": {
+        "label": "Extraer Propiedades Condicionales",
+        "detail": "Extrae propiedades condicionales vinculadas a una opción de firma.",
+        "fields": {
+          "app": { "label": "Aplicación" },
+          "sig": { "label": "Opción de firma" }
+        }
+      },
+      "extract-domains": {
+        "label": "Extraer Dominios",
+        "detail": "Extrae dominios específicos de la base de datos.",
+        "fields": {
+          "domains": { "label": "Dominios" }
+        }
+      },
+      "extract-escalation": {
+        "label": "Extraer Escalamiento",
+        "detail": "Extrae uno o más escalamientos.",
+        "fields": {
+          "escalations": { "label": "Escalamientos" }
+        }
+      },
+      "extract-global-restriction": {
+        "label": "Extraer Restricción Global",
+        "detail": "Extrae la restricción global por aplicación, objeto y atributo.",
+        "fields": {
+          "object": { "label": "Objeto" },
+          "app": { "label": "Aplicación" },
+          "attribute": { "label": "Atributo" },
+          "condition": { "label": "¿Extraer expresión condicional?" }
+        }
+      },
+      "extract-indexes": {
+        "label": "Extraer Índices",
+        "detail": "Extrae índices de base de datos de un objeto específico.",
+        "fields": {
+          "object": { "label": "Objeto" },
+          "indexes": { "label": "Índices", "hint": "Deja en blanco para extraer todos los índices del objeto." }
+        }
+      },
+      "extract-menu": {
+        "label": "Extraer Menú",
+        "detail": "Extrae menús creados para una aplicación.",
+        "fields": {
+          "app": { "label": "Aplicación" },
+          "menuType": { "label": "Tipo de menú" }
+        }
+      },
+      "extract-mif-object-structure": {
+        "label": "Extraer Estructura de Objeto",
+        "detail": "Extrae una o más estructuras de objeto (Object Structures) del MIF.",
+        "fields": {
+          "artifactValue": { "label": "Estructuras de objeto" },
+          "extractDependencies": { "label": "¿Extraer dependencias relacionadas?" }
+        }
+      },
+      "extract-mif-endpoint": {
+        "label": "Extraer End Point",
+        "detail": "Extrae uno o más End Points del MIF.",
+        "fields": {
+          "artifactValue": { "label": "End Points" },
+          "extractDependencies": { "label": "¿Extraer dependencias relacionadas?" }
+        }
+      },
+      "extract-mif-web-service": {
+        "label": "Extraer Web Service",
+        "detail": "Extrae uno o más web services del MIF.",
+        "fields": {
+          "artifactValue": { "label": "Web services" },
+          "extractDependencies": { "label": "¿Extraer dependencias relacionadas?" }
+        }
+      },
+      "extract-mif-enterprise-service": {
+        "label": "Extraer Enterprise Service",
+        "detail": "Extrae uno o más Enterprise Services del MIF.",
+        "fields": {
+          "artifactValue": { "label": "Enterprise services" },
+          "extractDependencies": { "label": "¿Extraer dependencias relacionadas?" }
+        }
+      },
+      "extract-mif-external-system": {
+        "label": "Extraer Sistema Externo",
+        "detail": "Extrae uno o más sistemas externos del MIF.",
+        "fields": {
+          "artifactValue": { "label": "Sistemas externos" },
+          "extractDependencies": { "label": "¿Extraer dependencias relacionadas?" }
+        }
+      },
+      "extract-mif-publish-channel": {
+        "label": "Extraer Canal de Publicación",
+        "detail": "Extrae uno o más canales de publicación del MIF.",
+        "fields": {
+          "artifactValue": { "label": "Canales de publicación" },
+          "extractDependencies": { "label": "¿Extraer dependencias relacionadas?" }
+        }
+      },
+      "extract-mif-invoke-channel": {
+        "label": "Extraer Canal de Invocación",
+        "detail": "Extrae uno o más canales de invocación del MIF.",
+        "fields": {
+          "artifactValue": { "label": "Canales de invocación" },
+          "extractDependencies": { "label": "¿Extraer dependencias relacionadas?" }
+        }
+      },
+      "extract-mif-oslc-resources": {
+        "label": "Extraer Recursos OSLC",
+        "detail": "Extrae uno o más recursos OSLC del MIF.",
+        "fields": {
+          "artifactValue": { "label": "Recursos OSLC" },
+          "extractDependencies": { "label": "¿Extraer dependencias relacionadas?" }
+        }
+      },
+      "extract-mif-json-resources": {
+        "label": "Extraer Recursos JSON",
+        "detail": "Extrae uno o más recursos JSON del MIF.",
+        "fields": {
+          "artifactValue": { "label": "Recursos JSON" },
+          "extractDependencies": { "label": "¿Extraer dependencias relacionadas?" }
+        }
+      },
+      "extract-person-groups": {
+        "label": "Extraer Grupos de Personas",
+        "detail": "Extrae uno o más Person Groups.",
+        "fields": {
+          "groups": { "label": "Grupos de personas" }
+        }
+      },
+      "extract-presentation": {
+        "label": "Extraer Presentación",
+        "detail": "Extrae el XML de presentación de una o más aplicaciones.",
+        "fields": {
+          "xmlVersion": {
+            "label": "Versión del XML",
+            "options": { "original": "Original", "changes": "Cambios" }
+          },
+          "app": { "label": "Aplicaciones" }
+        }
+      },
+      "extract-relationships": {
+        "label": "Extraer Relaciones",
+        "detail": "Extrae relaciones de un objeto padre.",
+        "fields": {
+          "parentObject": { "label": "Objeto padre" },
+          "relationships": { "label": "Relaciones", "hint": "Deja en blanco para extraer todas las relaciones del objeto." }
+        }
+      },
+      "extract-security-group": {
+        "label": "Extraer Grupo de Seguridad",
+        "detail": "Extrae uno o más grupos de seguridad.",
+        "fields": {
+          "groups": { "label": "Grupos de seguridad" }
+        }
+      },
+      "extract-signature-options": {
+        "label": "Extraer Opciones de Firma",
+        "detail": "Extrae opciones de firma (sigoptions) de una aplicación.",
+        "fields": {
+          "app": { "label": "Aplicación" },
+          "sig": { "label": "Opciones de firma" }
+        }
+      },
+      "extract-start-center": {
+        "label": "Extraer Start Center",
+        "detail": "Extrae uno o más Start Centers.",
+        "fields": {
+          "template": { "label": "Plantilla de Start Center" },
+          "groups": { "label": "Grupos de personas" }
+        }
+      },
+      "extract-system-properties": {
+        "label": "Extraer Propiedades del Sistema",
+        "detail": "Extrae una o más propiedades del sistema.",
+        "fields": {
+          "props": { "label": "Propiedades" }
+        }
+      },
+      "extract-tables": {
+        "label": "Extraer Tablas",
+        "detail": "Extrae una o más tablas, junto con relaciones e índices.",
+        "fields": {
+          "tables": { "label": "Tablas" },
+          "extractDomain": { "label": "¿Extraer dominio de los atributos?" }
+        }
+      },
+      "extract-messages": {
+        "label": "Extraer Mensajes",
+        "detail": "Extrae mensajes de un grupo específico.",
+        "fields": {
+          "group": { "label": "Grupo de mensajes" },
+          "keys": { "label": "Claves de mensaje", "hint": "Deja en blanco para extraer todos los mensajes del grupo." }
+        }
+      },
+      "extract-workflow": {
+        "label": "Extraer Workflow",
+        "detail": "Extrae un proceso de workflow específico.",
+        "fields": {
+          "process": { "label": "Proceso" },
+          "revision": { "label": "Revisión", "hint": "deja en blanco para la más reciente" },
+          "subprocess": { "label": "¿Extraer subprocesos?" }
+        }
+      },
+      "generate-dbc-autoscript": { "label": "Generar DBC de Automatización", "detail": "Convierte todos los scripts de la carpeta local autoscripts en un único archivo .dbc." },
+      "generate-new-ticket": {
+        "label": "Generar Nuevo Ticket",
+        "detail": "Crea la estructura de carpetas del proyecto para un nuevo ticket.",
+        "fields": {
+          "ticketNumber": { "label": "Número de ticket", "placeholder": "ej.: MDS-1050" }
+        }
+      },
+      "generate-package": {
+        "label": "Generar Paquete",
+        "detail": "Crea el paquete completo con todos los artefactos para instalación.",
+        "fields": {
+          "os": {
+            "label": "Sistema operativo de destino",
+            "options": { "linux": "Linux", "windows": "Windows" }
+          },
+          "includeDoc": { "label": "¿Incluir documentación técnica?" },
+          "includeAutoscript": { "label": "¿Incluir DBC de automatización?" },
+          "includeDiff": { "label": "¿Incluir diferencias de pantalla?" },
+          "includeReport": { "label": "¿Incluir informes?" },
+          "language": {
+            "label": "Idioma del paquete",
+            "options": { "pt-BR": "Portugués (BR)", "en": "Inglés" }
+          }
+        }
+      },
+      "generate-presentation-diff": {
+        "label": "Generar Diferencia de Presentación",
+        "detail": "Crea archivos .mxs a partir de las carpetas presentations/original y presentations/changes.",
+        "fields": {
+          "apps": { "label": "Aplicaciones", "hint": "Solo aparecen apps ya extraídos en este ticket. Deja en blanco para incluir todos." }
+        }
+      },
+      "generate-tech-document": { "label": "Generar Documento Técnico", "detail": "Genera la documentación técnica del proyecto a partir del ticket activo." },
+      "import-birt-reports": {
+        "label": "Importar Informes BIRT",
+        "detail": "Importa un informe BIRT específico a la aplicación indicada.",
+        "fields": {
+          "app": { "label": "Aplicación" },
+          "report": { "label": "Informe" }
+        }
+      },
+      "run-script-file": {
+        "label": "Ejecutar .dbc/.sql en Maximo",
+        "detail": "Ejecuta el archivo .dbc/.sql seleccionado dentro del contenedor del MDS.",
+        "fields": {
+          "file": { "label": "Archivo .dbc/.sql" }
+        }
+      },
+      "update-autoscript": {
+        "label": "Actualizar Script de Automatización",
+        "detail": "Envía la versión local de un script de automatización al entorno.",
+        "fields": {
+          "script": { "label": "Script de automatización" }
+        }
+      },
+      "update-remote-ticket": { "label": "Actualizar Ticket Remoto", "detail": "Sincroniza todo el proyecto del ticket activo con el repositorio remoto." },
+      "validate-dbc-file": {
+        "label": "Validar Archivo DBC",
+        "detail": "Valida uno o más archivos .dbc ya generados y reporta los errores encontrados.",
+        "actionLabel": "Validar Seleccionados",
+        "fields": {
+          "file": { "label": "Archivos .dbc" }
+        }
+      }
+    }
+  }
+}
