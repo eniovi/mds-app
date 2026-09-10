@@ -100,8 +100,10 @@ src/
   do módulo, não datas fixas, para o painel continuar parecendo um feed vivo numa demo
   feita daqui a três meses.
 - **Painel de Atividades Recentes** (`components/RecentActivityRail.tsx`, `lib/activity.ts`):
-  saiu do rodapé do painel de tarefas e virou um trilho lateral esquerdo logo abaixo do
-  cabeçalho, recolhível (estado por usuário, em localStorage). Mostra ícone de status,
+  saiu do rodapé do painel de tarefas e virou um trilho lateral **direito** logo abaixo do
+  cabeçalho, recolhível (estado por usuário, em localStorage). Fica depois do conteúdo na
+  ordem do DOM, que é onde pertence visualmente e também a ordem de leitura certa —
+  leitores de tela e Tab chegam ao trabalho da página antes do feed ambiente. Mostra ícone de status,
   ação, arquivo/objeto tocado, ticket, usuário e hora relativa. As execuções reais do
   usuário são projetadas para o mesmo formato e entram **na frente** do histórico semeado —
   o trilho reage ao vivo ao que se executa e mesmo assim nunca aparece vazio numa demo.

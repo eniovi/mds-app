@@ -45,7 +45,7 @@ function ActivityRow({ event }: { event: ActivityEvent }) {
 }
 
 /** Recent activity, promoted out of the footer of the task panel into a
- * persistent left rail directly under the header — it is the one thing a
+ * persistent right rail directly under the header — it is the one thing a
  * consultant checks between actions, and at the bottom of a 36-card grid it
  * was effectively invisible. Collapsible because the task panel already owns
  * a category sidebar; collapsed state is per-viewer and survives navigation

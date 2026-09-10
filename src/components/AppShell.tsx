@@ -22,7 +22,10 @@ interface AppShellProps {
 }
 
 /** Frame shared by every screen below the client selection: global header,
- * then the recent-activity rail beside the page's own content.
+ * then the page's own content with the recent-activity rail down the right
+ * side. The rail comes *after* the content in the DOM, which is both where it
+ * belongs visually and the right reading order — screen readers and Tab reach
+ * the page's own work before the ambient feed.
  *
  * The guard is what makes the hierarchy real rather than decorative — land on
  * any inner route with no client chosen (fresh session, cleared storage, a
@@ -42,8 +45,8 @@ export function AppShell({
     <div className={className}>
       <AppHeader search={search} backLink={backLink} />
       <div className="shell-body">
-        {showActivityRail && <RecentActivityRail />}
         <div className="shell-content">{children}</div>
+        {showActivityRail && <RecentActivityRail />}
       </div>
     </div>
   );

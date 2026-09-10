@@ -659,6 +659,15 @@ table.data-table tr.active-row td { background: var(--secondary); }
 /* Shell: header, then the activity rail beside the page's own content. */
 .shell-body { flex: 1; display: flex; min-height: 0; }
 .shell-content { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+/* Page mains carry a max-width for readability, but inside the shell they also
+   have to yield to the rail: without width:100% + min-width:0 a centred main
+   keeps its max-width and overflows the content box, sliding its right-hand
+   actions under the rail. min-width:0 also stops the wide tables' min-content
+   width from blowing the column out. */
+.shell-content > * { min-width: 0; }
+.shell-content .tickets-main,
+.shell-content .clients-main { width: 100%; }
+.shell-content .body-grid > .main { min-width: 0; }
 .ide-page .shell-body { overflow: hidden; }
 .ide-page .shell-content { overflow: hidden; }
 
@@ -746,9 +755,9 @@ table.data-table tr.active-row td { background: var(--secondary); }
 .owner-role { font-size: 11px; color: var(--muted); }
 .page-head-actions { display: flex; align-items: center; gap: var(--sp-12); }
 
-/* Recent activity rail --------------------------------------------------- */
+/* Recent activity rail (direita) ----------------------------------------- */
 .activity-rail {
-  flex: none; width: 288px; border-right: 1px solid var(--border);
+  flex: none; width: 288px; border-left: 1px solid var(--border);
   background: var(--surface); display: flex; flex-direction: column; min-height: 0;
 }
 .activity-rail.collapsed { width: 48px; align-items: center; padding-top: var(--sp-16); gap: var(--sp-16); }
