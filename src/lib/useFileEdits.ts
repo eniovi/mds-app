@@ -26,7 +26,19 @@ export function useFileEdits() {
     });
   }, []);
 
+  /** Drops a saved buffer — for a deleted file, so re-creating the same name
+   * later starts empty instead of resurrecting the old content. */
+  const forget = useCallback((path: string) => {
+    setEdits((prev) => {
+      if (!(path in prev)) return prev;
+      const next = { ...prev };
+      delete next[path];
+      writeJSON(STORAGE_KEY, next);
+      return next;
+    });
+  }, []);
+
   const getSaved = useCallback((path: string): string | undefined => edits[path], [edits]);
 
-  return { getSaved, save };
+  return { getSaved, save, forget };
 }

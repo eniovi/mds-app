@@ -10,7 +10,7 @@ import { RunHistoryTable } from "@/components/RunHistoryTable";
 import { RunErrorModal } from "@/components/RunErrorModal";
 import { InfoIcon } from "@/components/icons/InfoIcon";
 import { useActiveTicket } from "@/lib/useActiveTicket";
-import { useGeneratedFiles } from "@/lib/useGeneratedFiles";
+import { useWorkspaceFiles } from "@/lib/useWorkspaceFiles";
 import { MDS_TASKS } from "@/lib/mds-data";
 import { useLanguage } from "@/lib/useLanguage";
 import type { TreeFileEntry } from "@/lib/file-tree";
@@ -20,7 +20,7 @@ const RUN_TASK = MDS_TASKS.find((t) => t.id === "run-script-file")!;
 
 export default function RunQueuePage() {
   const activeTicket = useActiveTicket();
-  const { runs, filesByDir, fileMeta, pushRun } = useGeneratedFiles(activeTicket?.id);
+  const { runs, filesByDir, fileMeta, pushRun } = useWorkspaceFiles(activeTicket?.id);
   const { t } = useLanguage();
 
   const [viewMode, setViewMode] = useState<"queue" | "history">("queue");

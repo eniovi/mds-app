@@ -1,8 +1,9 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { MDS_CLIENTS, MDS_ENVIRONMENTS, MDS_TICKETS } from "./mockData";
 import { readJSON, readString, writeJSON, writeString } from "./storage";
+import { logActivity } from "./activity-log";
 import type { Client, Environment, EnvironmentStatus, Ticket } from "./types";
 
 export const CLIENTS_STORAGE_KEY = "mds_clients";
@@ -58,6 +59,12 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
   const [allTickets, setAllTickets] = useState<Ticket[]>(MDS_TICKETS);
   const [activeClientId, setActiveClientId] = useState("");
   const [activeTicketId, setActiveTicketId] = useState("");
+
+  // Latest environments for the callbacks below, so they can look an entry up
+  // *outside* a setState updater (updaters are re-run by strict mode and must
+  // stay pure — logging inside one would double-post the event in dev).
+  const envsRef = useRef(allEnvironments);
+  useEffect(() => { envsRef.current = allEnvironments; }, [allEnvironments]);
 
   useEffect(() => {
     setClients(readJSON<Client[]>(CLIENTS_STORAGE_KEY, MDS_CLIENTS));
@@ -127,6 +134,7 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
   const createTicket = useCallback((ticket: Ticket) => {
     setAllTickets((prev) => [ticket, ...prev]);
     setActiveTicketId(ticket.id);
+    logActivity({ clientId: ticket.clientId, kind: "ticket", actionKey: "activity.actions.ticketCreated", target: ticket.id, ticket: ticket.id });
   }, []);
 
   const setTicketEnvironment = useCallback((ticketId: string, envId: string) => {
@@ -141,20 +149,28 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
     );
   }, []);
 
+  // Environment actions log to the activity rail here, at the single point
+  // every screen goes through, so no caller can forget to emit the event.
   const createEnvironment = useCallback((env: Environment) => {
     setAllEnvironments((prev) => [env, ...prev]);
+    logActivity({ clientId: env.clientId, kind: "environment", actionKey: "activity.actions.environmentCreated", target: env.name, ticket: "—" });
   }, []);
 
   const updateEnvironment = useCallback((env: Environment) => {
     setAllEnvironments((prev) => prev.map((e) => (e.id === env.id ? env : e)));
+    logActivity({ clientId: env.clientId, kind: "environment", actionKey: "activity.actions.environmentUpdated", target: env.name, ticket: "—" });
   }, []);
 
   const removeEnvironment = useCallback((envId: string) => {
+    const gone = envsRef.current.find((e) => e.id === envId);
     setAllEnvironments((prev) => prev.filter((e) => e.id !== envId));
+    if (gone) logActivity({ clientId: gone.clientId, kind: "environment", actionKey: "activity.actions.environmentRemoved", target: gone.name, ticket: "—" });
   }, []);
 
   const setEnvironmentStatus = useCallback((envId: string, status: EnvironmentStatus) => {
+    const env = envsRef.current.find((e) => e.id === envId);
     setAllEnvironments((prev) => prev.map((e) => (e.id === envId ? { ...e, status } : e)));
+    if (env) logActivity({ clientId: env.clientId, kind: "environment", status: status === "failed" ? "error" : "success", actionKey: "activity.actions.environmentTested", target: env.name, ticket: "—" });
   }, []);
 
   const value = useMemo<WorkspaceContextValue>(

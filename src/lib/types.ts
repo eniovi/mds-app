@@ -202,7 +202,11 @@ export interface ActivityEvent {
   /** catalog task id when the event came from a task run — lets the rail
    * relabel the action through the catalog overlay when the language changes */
   taskId?: string;
-  /** fallback label, used when there is no taskId to translate through */
+  /** i18n key under activity.actions.* for events the app itself logs
+   * (ticket created, environment tested, file deleted…) — translated live by
+   * the rail, like taskId is for runs */
+  actionKey?: string;
+  /** fallback label, used when there is neither taskId nor actionKey */
   action: string;
   /** file, artifact or object the action touched */
   target: string;

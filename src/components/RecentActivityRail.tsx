@@ -23,7 +23,11 @@ function statusDotClass(status: RunStatus): string {
 
 function ActivityRow({ event }: { event: ActivityEvent }) {
   const { t, language } = useLanguage();
-  const action = event.taskId ? runTaskLabel(event.taskId, event.action, t) : event.action;
+  const action = event.taskId
+    ? runTaskLabel(event.taskId, event.action, t)
+    : event.actionKey
+    ? t(event.actionKey, { defaultValue: event.action })
+    : event.action;
 
   return (
     <li className="act-row" data-od-id={"activity-" + event.id}>

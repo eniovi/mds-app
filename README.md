@@ -83,13 +83,38 @@ src/
     mds-data.ts           # catálogo de 36 tarefas (com outputDir real) + catálogos mock do Maximo/MAS + ambientes seed
     task-form.ts           # validação, preview de comando, resolveOutputPath (diretório real do artefato)
     file-tree.ts, file-content.ts, useFileEdits.ts  # árvore de arquivos + preview de conteúdo + edições salvas
-    useGeneratedFiles.ts   # fonte única "quais arquivos existem no workspace do ticket" (usada por /files e /run-queue)
+    useWorkspaceFiles.ts   # fonte única "quais arquivos existem no workspace do ticket": gerados + criados à mão − excluídos
+    store.ts               # store compartilhado (useSyncExternalStore + localStorage) — histórico de runs, log de atividades, arquivos
     queue-order.ts          # reordenação pura: por item, por grupo de diretório, por drag-and-drop
     session-context.tsx   # SessionProvider/useSession — identidade global do usuário
     storage.ts, useActiveTicket.ts, useEnvironments.ts, format.ts
 ```
 
 ## O que ainda é simulado
+
+- **Estado compartilhado entre telas** (`lib/store.ts`): histórico de execuções, log de
+  atividades e arquivos do workspace vivem em stores `useSyncExternalStore` + localStorage,
+  não em `useState` por hook. O padrão antigo dava a cada consumidor uma cópia lida no
+  mount — o drawer empurrava a execução na cópia dele, o trilho de atividades continuava
+  mostrando a cópia dele, e os dois só voltavam a concordar na próxima navegação. Era o
+  "histórico para de atualizar". Agora toda escrita notifica todo mundo no mesmo render.
+- **Trilho de atividades = fila LIFO com teto** (`lib/activity.ts`, `lib/activity-log.ts`):
+  execuções (do histórico), eventos que o app registra (`logActivity`: ticket criado,
+  ambiente cadastrado/editado/removido/testado, arquivo criado/salvo/excluído) e o
+  histórico semeado, mesclados por data e cortados em 20 — o mais novo entra no topo, o
+  mais antigo cai. Tickets e ambientes emitem no `workspace-context`, o único ponto por
+  onde toda tela passa, então nenhum chamador pode esquecer.
+- **Arquivos criados/excluídos no editor** (`useWorkspaceFiles`, `FileTree`): `+ Novo Arquivo`
+  abre uma linha inline (pasta + nome, validada ao digitar: caracteres inválidos, extensão
+  obrigatória e só as que o editor abre, nome já existente). Criar = buffer vazio salvo em
+  `useFileEdits`, então o editor e a fila não precisam de caso especial. Excluir (lixeira na
+  linha ou menu de contexto) passa pelo `ConfirmModal` destrutivo; um arquivo gerado vira
+  *tombstone* (o histórico de runs é imutável, é a trilha de auditoria), um criado à mão é
+  removido da própria lista.
+- **Diálogos de formulário não fecham no backdrop** (`useDialogDismiss`): ticket, ambiente e
+  o drawer de tarefa só fecham por Cancelar, pelo X no cabeçalho ou concluindo o fluxo.
+  `Esc` fecha apenas enquanto não há nada digitado. O `ConfirmModal` mantém backdrop =
+  cancelar de propósito: não há dado a perder e cancelar é a ação segura.
 
 - **Ações "…Arquivo Corrente" da toolbar do editor** (`components/ide/ActionToolbar.tsx`,
   `TaskDrawer autoRun`): Validar, Executar e Atualizar Script de Automação agem sobre a
@@ -130,7 +155,7 @@ src/
   "Executar .dbc/.sql no Maximo", "Aplicar Diferença de Apresentação"): não são mais
   texto livre — `components/fields/FilePickerField.tsx` mostra uma DataTable com busca dos
   arquivos já gerados no ticket (mesma fonte de `/files` e `/run-queue`,
-  `useGeneratedFiles`), com filtro opcional por extensão (`fileExtensions` no `TaskField`)
+  `useWorkspaceFiles`), com filtro opcional por extensão (`fileExtensions` no `TaskField`)
   e o `.ds-empty-state` padrão quando o ticket ainda não gerou nenhum arquivo do tipo
   esperado. `.ds-empty-state` ficou como o padrão reutilizável — as outras telas
   (`.dir-empty`, `.queue-empty`, `.empty-state` na home) ainda usam variações mais antigas
@@ -281,7 +306,7 @@ src/
   - **Histórico de Execuções**: nova aba em `/run-queue` (toggle "Fila"/"Histórico",
     `.ds-tabs`) com `RunHistoryTable` — Data/Hora, Tarefa, Ticket, Usuário, Status, e um
     "Ver Logs de Erro" que abre `RunErrorModal` reaproveitando o mesmo `ErrorLogBlock`.
-    Isso expôs que o histórico de runs estava duplicado (a home page e `useGeneratedFiles`
+    Isso expôs que o histórico de runs estava duplicado (a home page e `useWorkspaceFiles`
     liam/escreviam "mds_run_history" cada um com seu próprio `useState`, cada um cortando
     em 8 registros de forma independente) — extraí `lib/useRunHistory.ts` como fonte única
     e subi o limite de 8 para 50, porque uma aba "Histórico" com 8 registros no total do

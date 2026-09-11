@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { useGeneratedFiles } from "@/lib/useGeneratedFiles";
+import { useWorkspaceFiles } from "@/lib/useWorkspaceFiles";
 import { dirOf } from "@/lib/file-tree";
 import { mockFileSize, formatFileSize } from "@/lib/file-content";
 import { timeAgo } from "@/lib/format";
@@ -19,11 +19,11 @@ interface FilePickerFieldProps {
 
 /** Replaces a manually-typed file path with a searchable DataTable of files
  * already generated in this ticket — same underlying source
- * (useGeneratedFiles) and the same select-all pattern already established
+ * (useWorkspaceFiles) and the same select-all pattern already established
  * for the run-queue's file list, reused here rather than rebuilt. */
 export function FilePickerField({ field, value, onChange, activeTicket, invalid }: FilePickerFieldProps) {
   const { t } = useLanguage();
-  const { allFiles } = useGeneratedFiles(activeTicket?.id);
+  const { allFiles } = useWorkspaceFiles(activeTicket?.id);
   const [query, setQuery] = useState("");
   const multiple = !!field.multiple;
   const selectedPaths = multiple ? (Array.isArray(value) ? value : []) : typeof value === "string" && value ? [value] : [];

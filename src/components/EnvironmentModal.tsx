@@ -6,6 +6,7 @@ import { InfoIcon } from "./icons/InfoIcon";
 import { EyeIcon } from "./icons/EyeIcon";
 import { ServerIcon } from "./icons/ServerIcon";
 import { useLanguage } from "@/lib/useLanguage";
+import { useDialogDismiss } from "@/lib/useDialogDismiss";
 import type { DbType, Environment, EnvironmentKind, EnvironmentStatus } from "@/lib/types";
 
 const MAXIMO_VERSION_OPTIONS = ["IBM Maximo 7.6", "IBM MAS"];
@@ -50,6 +51,21 @@ export function EnvironmentModal({ clientId, environment, onClose, onSubmit }: E
 
   const valid = name.trim().length > 2 && host.trim().length > 2 && /^\d+$/.test(port.trim());
 
+  // Dirty = differs from what the dialog opened with (the environment being
+  // edited, or the empty defaults). The credential fields count too: they
+  // are never saved, but typing them is still work the user would lose.
+  const dirty =
+    name !== (environment?.name ?? "") ||
+    kind !== (environment?.kind ?? "DEV") ||
+    host !== (environment?.host ?? "") ||
+    port !== String(environment?.port ?? 9081) ||
+    appUser !== (environment?.appUser ?? "") ||
+    dbUser !== "" ||
+    dbPassword !== "" ||
+    maximoVersion !== (environment?.maximoVersion ?? MAXIMO_VERSION_OPTIONS[0]) ||
+    dbType !== (environment?.dbType ?? "DB2");
+  useDialogDismiss(onClose, dirty);
+
   /** In-form connectivity check, so a connection can be proven before it is
    * saved rather than only from the table afterwards. Mocked like every other
    * round trip in this prototype. */
@@ -76,10 +92,13 @@ export function EnvironmentModal({ clientId, environment, onClose, onSubmit }: E
   }
 
   return (
-    <div className="modal-backdrop" onClick={onClose} data-od-id="environment-modal-backdrop">
-      <div className="modal modal-wide" onClick={(e) => e.stopPropagation()} data-od-id="environment-modal">
-        <div>
-          <h3>{isEdit ? t("environmentModal.editTitle") : t("environmentModal.createTitle")}</h3>
+    <div className="modal-backdrop" data-od-id="environment-modal-backdrop">
+      <div className="modal modal-wide" role="dialog" aria-modal="true" aria-labelledby="environment-modal-title" data-od-id="environment-modal">
+        <div className="modal-head">
+          <h3 id="environment-modal-title">{isEdit ? t("environmentModal.editTitle") : t("environmentModal.createTitle")}</h3>
+          <button type="button" className="modal-close" onClick={onClose} aria-label={t("common.close")} data-od-id="environment-modal-close">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 6l12 12M18 6L6 18" /></svg>
+          </button>
         </div>
 
         <div className="ds-alert" data-od-id="environment-security-alert">

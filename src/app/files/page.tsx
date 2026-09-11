@@ -13,13 +13,16 @@ import { FileListTable } from "@/components/ide/FileListTable";
 import { BatchActionBar } from "@/components/BatchActionBar";
 import { BatchRunDrawer } from "@/components/BatchRunDrawer";
 import { TaskDrawer } from "@/components/TaskDrawer";
+import { ConfirmModal } from "@/components/ConfirmModal";
 import { useActiveTicket } from "@/lib/useActiveTicket";
-import { useGeneratedFiles } from "@/lib/useGeneratedFiles";
+import { useWorkspaceFiles } from "@/lib/useWorkspaceFiles";
 import { useFileEdits } from "@/lib/useFileEdits";
 import { generateMockContent, extOf } from "@/lib/file-content";
 import { buildFileTree, pathsWithFiles } from "@/lib/file-tree";
 import { MDS_TASKS } from "@/lib/mds-data";
 import { useLanguage } from "@/lib/useLanguage";
+import { useWorkspace } from "@/lib/workspace-context";
+import { logActivity } from "@/lib/activity";
 import type { TreeFileEntry } from "@/lib/file-tree";
 import type { Task, TaskFormValues } from "@/lib/types";
 
@@ -28,8 +31,9 @@ const RUN_TASK = MDS_TASKS.find((t) => t.id === "run-script-file")!;
 
 export default function FilesPage() {
   const activeTicket = useActiveTicket();
-  const { filesByDir, fileMeta, allDirs, allFiles, pushRun } = useGeneratedFiles(activeTicket?.id);
-  const { getSaved, save } = useFileEdits();
+  const { activeClient } = useWorkspace();
+  const { filesByDir, fileMeta, allDirs, allFiles, pushRun, createFile, deleteFile } = useWorkspaceFiles(activeTicket?.id);
+  const { getSaved, save, forget } = useFileEdits();
   const { t } = useLanguage();
 
   const tree = useMemo(() => buildFileTree(allDirs, filesByDir), [allDirs, filesByDir]);
@@ -92,8 +96,52 @@ export default function FilesPage() {
 
   const saveActive = useCallback(() => {
     const path = activePathRef.current;
-    if (path && buffersRef.current[path] !== undefined) save(path, buffersRef.current[path]);
-  }, [save]);
+    if (!path || buffersRef.current[path] === undefined) return;
+    save(path, buffersRef.current[path]);
+    if (activeClient && activeTicket) {
+      logActivity({ clientId: activeClient.id, kind: "file", actionKey: "activity.actions.fileSaved", target: path, ticket: activeTicket.id });
+    }
+  }, [save, activeClient, activeTicket]);
+
+  // ---- file-system operations (create / delete) -------------------------
+
+  const [pendingDelete, setPendingDelete] = useState<TreeFileEntry | null>(null);
+
+  /** A new file is an empty saved buffer: useFileEdits owns its content from
+   * the first byte, exactly like an edited generated file, so the editor and
+   * the run queue need no special case for "manual" files. */
+  function handleCreateFile(path: string) {
+    createFile(path);
+    save(path, "");
+    // seed the live buffer before opening: openFile falls back to getSaved(),
+    // which still reads the *previous* edits state in this same tick and would
+    // hand the new tab the mock body of a generated file instead of "".
+    setBuffers((prev) => ({ ...prev, [path]: "" }));
+    const filename = path.slice(path.lastIndexOf("/") + 1);
+    openFile({ path, filename, taskId: "", taskLabel: "", startedAt: new Date().toISOString(), origin: "manual" });
+    if (activeClient && activeTicket) {
+      logActivity({ clientId: activeClient.id, kind: "file", actionKey: "activity.actions.fileCreated", target: path, ticket: activeTicket.id });
+    }
+  }
+
+  /** Runs only after the destructive dialog: drops the file from the
+   * workspace, its saved buffer, and its tab if open. */
+  function confirmDelete() {
+    if (!pendingDelete) return;
+    const { path } = pendingDelete;
+    deleteFile(path);
+    forget(path);
+    setBuffers((prev) => {
+      const next = { ...prev };
+      delete next[path];
+      return next;
+    });
+    closeTab(path);
+    if (activeClient && activeTicket) {
+      logActivity({ clientId: activeClient.id, kind: "file", actionKey: "activity.actions.fileDeleted", target: path, ticket: activeTicket.id });
+    }
+    setPendingDelete(null);
+  }
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -195,7 +243,11 @@ export default function FilesPage() {
                 activePath={activePath}
                 dirtyPaths={dirtyPaths}
                 defaultExpanded={defaultExpanded}
+                fileMeta={fileMeta}
+                allDirs={allDirs}
                 onOpenFile={openFile}
+                onCreateFile={handleCreateFile}
+                onRequestDelete={setPendingDelete}
               />
             }
             right={
@@ -238,6 +290,17 @@ export default function FilesPage() {
 
       {batchTask && (
         <BatchRunDrawer items={activeBatchItems} task={batchTask} activeTicket={activeTicket} pushRun={pushRun} onClose={closeBatchDrawer} />
+      )}
+
+      {pendingDelete && (
+        <ConfirmModal
+          odId="delete-file-confirm"
+          title={t("fileTree.confirmDeleteTitle")}
+          message={t("fileTree.confirmDeleteMessage", { name: pendingDelete.filename })}
+          confirmLabel={t("fileTree.deleteAction")}
+          onCancel={() => setPendingDelete(null)}
+          onConfirm={confirmDelete}
+        />
       )}
     </AppShell>
   );

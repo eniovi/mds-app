@@ -54,13 +54,16 @@ export function TaskDrawer({ task, onClose, activeTicket, pushRun, initialValues
   const environments = useEnvironments();
   const activeEnv = activeTicket ? environments.find((e) => e.id === activeTicket.env) : undefined;
 
+  // Escape closes only when there is nothing to lose: the form untouched, or
+  // the run already in the console. A half-filled form needs Cancel or the X.
+  const pristine = JSON.stringify(values) === JSON.stringify(seeded);
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape" && (mode === "console" || pristine)) onClose();
     }
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, [onClose]);
+  }, [onClose, mode, pristine]);
 
   // Stop any in-flight run when the drawer unmounts (e.g. "Concluir" clicked
   // before the run finished) so a stray interval can't keep pushing into a
@@ -149,7 +152,9 @@ export function TaskDrawer({ task, onClose, activeTicket, pushRun, initialValues
 
   return (
     <>
-      <div className="backdrop" onClick={onClose} data-od-id="drawer-backdrop" />
+      {/* no onClick: the drawer holds a form, and a click that lands on the
+          backdrop by accident must not throw it away (see useDialogDismiss) */}
+      <div className="backdrop" data-od-id="drawer-backdrop" />
       <div className="drawer" data-od-id="task-drawer">
         <div className="drawer-head">
           <div>

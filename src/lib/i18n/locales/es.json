@@ -93,7 +93,17 @@
     "collapse": "Contraer actividades recientes",
     "expand": "Expandir actividades recientes",
     "emptyTitle": "Ninguna actividad todavía.",
-    "emptyDesc": "Ejecuta una tarea y aparecerá aquí."
+    "emptyDesc": "Ejecuta una tarea y aparecerá aquí.",
+    "actions": {
+      "ticketCreated": "Creó el ticket",
+      "environmentCreated": "Registró el entorno",
+      "environmentUpdated": "Editó el entorno",
+      "environmentRemoved": "Eliminó el entorno",
+      "environmentTested": "Probó la conexión",
+      "fileCreated": "Creó el archivo",
+      "fileSaved": "Guardó cambios",
+      "fileDeleted": "Eliminó el archivo"
+    }
   },
   "tickets": {
     "backToPanel": "Volver al panel",
@@ -289,6 +299,25 @@
       "rptdesign": "definición de informe BIRT",
       "default": "archivo binario"
     }
+  },
+  "fileTree": {
+    "title": "Archivos",
+    "newFile": "Nuevo Archivo",
+    "create": "Crear",
+    "folderAria": "Carpeta del nuevo archivo",
+    "nameAria": "Nombre del nuevo archivo",
+    "namePlaceholder": "ej.: script_ajuste.sql",
+    "manualFile": "Archivo creado manualmente",
+    "deleteFile": "Eliminar archivo",
+    "deleteAria": "Eliminar archivo {{name}}",
+    "deleteAction": "Eliminar",
+    "confirmDeleteTitle": "¿Eliminar archivo?",
+    "confirmDeleteMessage": "¿Está seguro de que desea eliminar el archivo {{name}}? Esta acción no se puede deshacer.",
+    "errorEmpty": "Indique un nombre para el archivo.",
+    "errorInvalidChars": "El nombre no puede contener / \\\\ : * ? \\\" < > | ni espacios en los extremos.",
+    "errorNoExtension": "Incluya la extensión (ej.: .sql, .dbc).",
+    "errorUnsupportedExtension": "Extensión no admitida. Use .dbc, .sql, .py, .xml o .mxs.",
+    "errorExists": "Ya existe un archivo con ese nombre en esta carpeta."
   },
   "newEnvironmentModal": {
     "nameLabel": "Nombre del Entorno",

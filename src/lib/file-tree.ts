@@ -1,9 +1,12 @@
 export interface TreeFileEntry {
   path: string;
   filename: string;
+  /** empty for files created by hand — there is no task behind them */
   taskId: string;
   taskLabel: string;
   startedAt: string;
+  /** "run" = produced by a task run; "manual" = created in the editor */
+  origin: "run" | "manual";
 }
 
 export function dirOf(path: string): string {

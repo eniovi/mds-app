@@ -93,7 +93,17 @@
     "collapse": "Collapse recent activity",
     "expand": "Expand recent activity",
     "emptyTitle": "No activity yet.",
-    "emptyDesc": "Run a task and it shows up here."
+    "emptyDesc": "Run a task and it shows up here.",
+    "actions": {
+      "ticketCreated": "Created ticket",
+      "environmentCreated": "Registered environment",
+      "environmentUpdated": "Edited environment",
+      "environmentRemoved": "Removed environment",
+      "environmentTested": "Tested connection",
+      "fileCreated": "Created file",
+      "fileSaved": "Saved changes",
+      "fileDeleted": "Deleted file"
+    }
   },
   "tickets": {
     "backToPanel": "Back to panel",
@@ -289,6 +299,25 @@
       "rptdesign": "BIRT report definition",
       "default": "binary file"
     }
+  },
+  "fileTree": {
+    "title": "Files",
+    "newFile": "New File",
+    "create": "Create",
+    "folderAria": "Folder for the new file",
+    "nameAria": "Name of the new file",
+    "namePlaceholder": "e.g.: fix_script.sql",
+    "manualFile": "File created manually",
+    "deleteFile": "Delete file",
+    "deleteAria": "Delete file {{name}}",
+    "deleteAction": "Delete",
+    "confirmDeleteTitle": "Delete file?",
+    "confirmDeleteMessage": "Are you sure you want to delete the file {{name}}? This action cannot be undone.",
+    "errorEmpty": "Enter a name for the file.",
+    "errorInvalidChars": "The name cannot contain / \\\\ : * ? \\\" < > | or leading/trailing spaces.",
+    "errorNoExtension": "Include the extension (e.g. .sql, .dbc).",
+    "errorUnsupportedExtension": "Unsupported extension. Use .dbc, .sql, .py, .xml or .mxs.",
+    "errorExists": "A file with this name already exists in this folder."
   },
   "newEnvironmentModal": {
     "nameLabel": "Environment Name",

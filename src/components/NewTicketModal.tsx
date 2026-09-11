@@ -5,6 +5,7 @@ import Link from "next/link";
 import { CURRENT_PERSON } from "@/lib/mockData";
 import { useEnvironments } from "@/lib/useEnvironments";
 import { useLanguage } from "@/lib/useLanguage";
+import { useDialogDismiss } from "@/lib/useDialogDismiss";
 import type { Ticket } from "@/lib/types";
 
 export function NewTicketModal({ clientId, onClose, onCreate }: { clientId: string; onClose: () => void; onCreate: (t: Ticket) => void }) {
@@ -14,17 +15,24 @@ export function NewTicketModal({ clientId, onClose, onCreate }: { clientId: stri
   const [env, setEnv] = useState("");
   const environments = useEnvironments();
   const valid = id.trim().length > 2 && !!env;
+  // anything typed = unsaved work: Escape stops closing, backdrop never did
+  useDialogDismiss(onClose, id.trim().length > 0 || title.trim().length > 0);
 
   useEffect(() => {
     if (!env && environments.length > 0) setEnv(environments[0].id);
   }, [environments, env]);
 
   return (
-    <div className="modal-backdrop" onClick={onClose} data-od-id="new-ticket-backdrop">
-      <div className="modal" onClick={(e) => e.stopPropagation()} data-od-id="new-ticket-modal">
-        <div>
-          <h3>{t("newTicketModal.title")}</h3>
-          <p className="text-sm text-muted">{t("newTicketModal.subtitle")}</p>
+    <div className="modal-backdrop" data-od-id="new-ticket-backdrop">
+      <div className="modal" role="dialog" aria-modal="true" aria-labelledby="new-ticket-title" data-od-id="new-ticket-modal">
+        <div className="modal-head">
+          <div>
+            <h3 id="new-ticket-title">{t("newTicketModal.title")}</h3>
+            <p className="text-sm text-muted">{t("newTicketModal.subtitle")}</p>
+          </div>
+          <button type="button" className="modal-close" onClick={onClose} aria-label={t("common.close")} data-od-id="new-ticket-close">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 6l12 12M18 6L6 18" /></svg>
+          </button>
         </div>
         <div className="field">
           <label className="label" htmlFor="new-ticket-id">{t("newTicketModal.idLabel")} <span style={{ color: "var(--destructive)" }}>*</span></label>

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { mdsCatalogFor } from "@/lib/mds-data";
-import { useGeneratedFiles } from "@/lib/useGeneratedFiles";
+import { useWorkspaceFiles } from "@/lib/useWorkspaceFiles";
 import { extractedApps } from "@/lib/extracted-apps";
 import { useLanguage } from "@/lib/useLanguage";
 import type { FieldValue, TaskField, Ticket } from "@/lib/types";
@@ -21,7 +21,7 @@ export function Combobox({ field, value, scopeValue, onChange, invalid, activeTi
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
-  const { runs } = useGeneratedFiles(activeTicket?.id);
+  const { runs } = useWorkspaceFiles(activeTicket?.id);
 
   const baseOptions = field.catalog ? mdsCatalogFor(field.catalog, scopeValue) : [];
   const detected = field.extractedBy ? extractedApps(runs, activeTicket?.id, field.extractedBy) : null;
