@@ -296,6 +296,11 @@ a { color: var(--brand); }
 
 .combo { position: relative; }
 .combo-badge-row { margin-bottom: 6px; }
+/* DS empty state standing in for a strict-filtered Combobox with nothing to
+   offer: tighter than the page-level variant so it sits inside a form field
+   without dwarfing the fields around it. */
+.combo-empty-state { padding: var(--sp-16) var(--sp-12); }
+.combo-empty-state .ds-empty-state-desc { max-width: 40ch; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
 .chip { display: flex; align-items: center; gap: 6px; background: var(--secondary); color: var(--brand); border-radius: var(--radius-xs); padding: 3px 8px 3px 10px; font-size: 12px; font-weight: 500; }
 .chip button { border: none; background: none; cursor: pointer; color: var(--brand); font-size: 13px; line-height: 1; padding: 0; }

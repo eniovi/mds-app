@@ -135,13 +135,16 @@ src/
   esperado. `.ds-empty-state` ficou como o padrão reutilizável — as outras telas
   (`.dir-empty`, `.queue-empty`, `.empty-state` na home) ainda usam variações mais antigas
   e são candidatas a migrar para ele numa limpeza futura.
-- **Apps "extraídos" no seletor de "Gerar Diferença de Apresentação"** (`filterToExtracted`
-  no `TaskField`, `lib/extracted-apps.ts`): `TaskDrawer` agora grava um snapshot dos valores
-  do formulário em cada `RunRecord` (`fieldValues`). `extractedApps()` varre o histórico do
-  ticket e junta os valores de qualquer campo `catalog: "apps"` de uma execução bem
-  sucedida — não é uma lista fixa nem um chute; se nenhuma tarefa que toca um app rodou
-  ainda, o Combobox mostra 0 opções e o badge fica `badge-warning`, honesto sobre o estado
-  real do workspace.
+- **Apps com tela extraída no seletor de "Gerar Diferença de Telas"** (`extractedBy` no
+  `TaskField`, `lib/extracted-apps.ts`): `TaskDrawer` grava um snapshot dos valores do
+  formulário em cada `RunRecord` (`fieldValues`). `extractedApps()` varre o histórico do
+  ticket e junta os apps de execuções bem-sucedidas **da tarefa nomeada em `extractedBy`**
+  — aqui, `extract-presentation`. A regra é estrita de propósito: um app cujos menus ou
+  relatórios BIRT foram extraídos não tem tela para diferenciar, então não aparece. No
+  protótipo o histórico de execuções *é* o diretório local (toda execução bem-sucedida é
+  um arquivo em `outputDir`), então "apps com extração de tela em disco" é exatamente
+  isso. Com telas, o Combobox mostra o badge `N telas extraídas`; sem nenhuma, o
+  `.ds-empty-state` padrão toma o lugar do input e diz o que falta fazer.
 - **Revisão de workflow cascata** (`type: "revision"` em "Extrair Workflow",
   `components/fields/RevisionSelect.tsx`, `MDS_WORKFLOW_REVISIONS` em `mds-data.ts`): campo
   "Revisão" fica desabilitado (`:disabled` nativo, mesmo estilo usado em toda a base) até

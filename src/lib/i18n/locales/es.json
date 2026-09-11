@@ -243,12 +243,9 @@
   },
   "fields": {
     "selectFieldFirst": "Selecciona primero el campo \"{{field}}\" arriba.",
-    "appsDetected_one": "{{count}} aplicación detectada en el workspace",
-    "appsDetected_other": "{{count}} aplicaciones detectadas en el workspace",
     "removeChipAria": "quitar {{value}}",
     "searchAndAdd": "Buscar y agregar…",
     "search": "Buscar…",
-    "noExtractedApps": "Ningún app extraído en este ticket todavía.",
     "noResults": "Ningún resultado en el entorno conectado.",
     "filePickerEmptyTitle": "Ningún archivo {{kind}}generado aún",
     "filePickerEmptyDesc": "Ejecuta una tarea de extracción o generación para crear archivos {{kind}}antes de elegir uno aquí.",
@@ -258,7 +255,11 @@
     "selectArtifactTypeFirst": "Selecciona un tipo de artefacto arriba.",
     "loadingArtifacts": "Cargando artefactos de Maximo…",
     "noArtifactsFound": "Ningún artefacto encontrado en Maximo.",
-    "requiredField": "Campo obligatorio."
+    "requiredField": "Campo obligatorio.",
+    "screensDetected_one": "{{count}} pantalla extraída",
+    "screensDetected_other": "{{count}} pantallas extraídas",
+    "noScreenExtractionTitle": "No se encontró ninguna extracción de pantalla en el directorio local.",
+    "noScreenExtractionDesc": "Realice la extracción antes de generar la diferencia."
   },
   "ideToolbar": {
     "save": "Guardar Cambios",
@@ -348,7 +349,7 @@
   "catalog": {
     "categories": {
       "db": { "label": "Base de Datos", "hint": "Tablas, atributos, índices, dominios, relaciones" },
-      "apps": { "label": "Aplicaciones & Pantallas", "hint": "Apps, menús, presentación, propiedades condicionales" },
+      "apps": { "label": "Aplicaciones & Pantallas", "hint": "Apps, menús, pantallas, propiedades condicionales" },
       "automation": { "label": "Automatización & Flujo", "hint": "Scripts, workflows, escalamientos, acciones" },
       "security": { "label": "Seguridad & Acceso", "hint": "Grupos de seguridad y de personas" },
       "comms": { "label": "Comunicación", "hint": "Plantillas y mensajes del sistema" },
@@ -359,8 +360,8 @@
     },
     "tasks": {
       "apply-presentation-diff": {
-        "label": "Aplicar Diferencia de Presentación",
-        "detail": "Aplica la diferencia de pantalla (.mxs) sobre la presentación actual.",
+        "label": "Aplicar Diferencia de Pantallas",
+        "detail": "Aplica la diferencia de pantalla (.mxs) sobre la pantalla actual.",
         "fields": {
           "file": { "label": "Archivo .mxs" }
         }
@@ -426,10 +427,10 @@
       },
       "extract-conditional-properties": {
         "label": "Extraer Propiedades Condicionales",
-        "detail": "Extrae propiedades condicionales vinculadas a una opción de firma.",
+        "detail": "Extrae propiedades condicionales vinculadas a una firma avanzada.",
         "fields": {
           "app": { "label": "Aplicación" },
-          "sig": { "label": "Opción de firma" }
+          "sig": { "label": "Firma avanzada" }
         }
       },
       "extract-domains": {
@@ -552,8 +553,8 @@
         }
       },
       "extract-presentation": {
-        "label": "Extraer Presentación",
-        "detail": "Extrae el XML de presentación de una o más aplicaciones.",
+        "label": "Extraer Pantalla",
+        "detail": "Extrae el XML de pantalla de una o más aplicaciones.",
         "fields": {
           "xmlVersion": {
             "label": "Versión del XML",
@@ -578,11 +579,11 @@
         }
       },
       "extract-signature-options": {
-        "label": "Extraer Opciones de Firma",
-        "detail": "Extrae opciones de firma (sigoptions) de una aplicación.",
+        "label": "Extraer Firma Avanzada",
+        "detail": "Extrae la firma avanzada (sigoptions) de una aplicación.",
         "fields": {
           "app": { "label": "Aplicación" },
-          "sig": { "label": "Opciones de firma" }
+          "sig": { "label": "Firma avanzada" }
         }
       },
       "extract-start-center": {
@@ -652,10 +653,10 @@
         }
       },
       "generate-presentation-diff": {
-        "label": "Generar Diferencia de Presentación",
+        "label": "Generar Diferencia de Pantallas",
         "detail": "Crea archivos .mxs a partir de las carpetas presentations/original y presentations/changes.",
         "fields": {
-          "apps": { "label": "Aplicaciones", "hint": "Solo aparecen apps ya extraídos en este ticket. Deja en blanco para incluir todos." }
+          "apps": { "label": "Aplicaciones", "hint": "Solo aparecen apps con extracción de pantalla en este ticket. Deja en blanco para incluir todas." }
         }
       },
       "generate-tech-document": { "label": "Generar Documento Técnico", "detail": "Genera la documentación técnica del proyecto a partir del ticket activo." },

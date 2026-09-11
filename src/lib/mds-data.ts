@@ -7,7 +7,7 @@ import type { Category, CatalogKey, SelectOption, Task, WorkflowRevision } from 
 
 export const MDS_CATEGORIES: Category[] = [
   { id: "db", label: "Banco de Dados", hint: "Tabelas, atributos, índices, domínios, relacionamentos" },
-  { id: "apps", label: "Aplicações & Telas", hint: "Apps, menus, apresentação, propriedades condicionais" },
+  { id: "apps", label: "Aplicações & Telas", hint: "Apps, menus, telas, propriedades condicionais" },
   { id: "automation", label: "Automação & Fluxo", hint: "Scripts, workflows, escalonamentos, ações" },
   { id: "security", label: "Segurança & Acesso", hint: "Grupos de segurança e de pessoas" },
   { id: "comms", label: "Comunicação", hint: "Templates e mensagens do sistema" },
@@ -120,8 +120,8 @@ export const MDS_WORKFLOW_REVISIONS: Record<string, WorkflowRevision[]> = {
 };
 
 export const MDS_TASKS: Task[] = [
-  { id: "apply-presentation-diff", label: "Aplicar Diferença de Apresentação", category: "apps",
-    detail: "Aplica a diferença de tela (.mxs) sobre a apresentação atual.",
+  { id: "apply-presentation-diff", label: "Aplicar Diferença de Telas", category: "apps",
+    detail: "Aplica a diferença de tela (.mxs) sobre a tela atual.",
     fields: [{ id: "file", label: "Arquivo .mxs", type: "file", required: true, fileExtensions: ["mxs"] }] },
 
   { id: "download-autoscripts", label: "Baixar Scripts de Automação", category: "automation",
@@ -173,11 +173,11 @@ export const MDS_TASKS: Task[] = [
     fields: [{ id: "conditions", label: "Expressões condicionais", type: "catalog", catalog: "conditionalExpressions", multiple: true, required: true }] },
 
   { id: "extract-conditional-properties", label: "Extrair Propriedades Condicionais", category: "apps",
-    detail: "Extrai propriedades condicionais vinculadas a uma opção de assinatura.",
+    detail: "Extrai propriedades condicionais vinculadas a uma assinatura avançada.",
     outputDir: "DBC",
     fields: [
       { id: "app", label: "Aplicação", type: "catalog", catalog: "apps", required: true },
-      { id: "sig", label: "Opção de assinatura", type: "catalog", catalog: "sigOptions", required: true },
+      { id: "sig", label: "Assinatura avançada", type: "catalog", catalog: "sigOptions", required: true },
     ] },
 
   { id: "extract-domains", label: "Extrair Domínios", category: "db",
@@ -307,8 +307,8 @@ export const MDS_TASKS: Task[] = [
     outputDir: "person_groups",
     fields: [{ id: "groups", label: "Grupos de pessoas", type: "catalog", catalog: "personGroups", multiple: true, required: true }] },
 
-  { id: "extract-presentation", label: "Extrair Apresentação", category: "apps",
-    detail: "Extrai o XML de apresentação de uma ou mais aplicações.",
+  { id: "extract-presentation", label: "Extrair Tela", category: "apps",
+    detail: "Extrai o XML de tela de uma ou mais aplicações.",
     outputDir: "presentations",
     fields: [
       { id: "xmlVersion", label: "Versão do XML", type: "select", default: "original", options: [{ label: "Original", value: "original" }, { label: "Alterações", value: "changes" }] },
@@ -328,12 +328,12 @@ export const MDS_TASKS: Task[] = [
     outputDir: "DBC",
     fields: [{ id: "groups", label: "Grupos de segurança", type: "catalog", catalog: "securityGroups", multiple: true, required: true }] },
 
-  { id: "extract-signature-options", label: "Extrair Opções de Assinatura", category: "apps",
-    detail: "Extrai opções de assinatura (sigoptions) de uma aplicação.",
+  { id: "extract-signature-options", label: "Extrair Assinatura Avançada", category: "apps",
+    detail: "Extrai a assinatura avançada (sigoptions) de uma aplicação.",
     outputDir: "DBC",
     fields: [
       { id: "app", label: "Aplicação", type: "catalog", catalog: "apps", required: true },
-      { id: "sig", label: "Opções de assinatura", type: "catalog", catalog: "sigOptions", multiple: true, required: true },
+      { id: "sig", label: "Assinatura avançada", type: "catalog", catalog: "sigOptions", multiple: true, required: true },
     ] },
 
   { id: "extract-start-center", label: "Extrair Start Center", category: "apps", beta: true,
@@ -394,10 +394,15 @@ export const MDS_TASKS: Task[] = [
       { id: "language", label: "Idioma do pacote", type: "select", default: "en", options: [{ label: "Português (BR)", value: "pt-BR" }, { label: "Inglês", value: "en" }] },
     ] },
 
-  { id: "generate-presentation-diff", label: "Gerar Diferença de Apresentação", category: "apps",
+  { id: "generate-presentation-diff", label: "Gerar Diferença de Telas", category: "apps",
     detail: "Cria arquivos .mxs a partir das pastas presentations/original e presentations/changes.",
     outputDir: "presentations",
-    fields: [{ id: "apps", label: "Aplicações", type: "catalog", catalog: "apps", multiple: true, filterToExtracted: true, hint: "Só aparecem apps já extraídos neste ticket. Deixe em branco para incluir todos." }] },
+    /* extractedBy is the strict rule the brief asks for: only apps with a *screen*
+       extraction (a successful extract-presentation run) in this ticket are
+       offered — an app whose menus or BIRT reports were extracted has no screen
+       to diff. The task ids and the presentations/ folders are the backend
+       contract and stay as they are; only the copy says "tela". */
+    fields: [{ id: "apps", label: "Aplicações", type: "catalog", catalog: "apps", multiple: true, extractedBy: "extract-presentation", hint: "Só aparecem apps com extração de tela neste ticket. Deixe em branco para incluir todas." }] },
 
   { id: "generate-tech-document", label: "Gerar Documento Técnico", category: "ticket",
     detail: "Gera a documentação técnica do projeto a partir do ticket ativo.",

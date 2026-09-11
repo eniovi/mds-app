@@ -243,12 +243,9 @@
   },
   "fields": {
     "selectFieldFirst": "Selecione primeiro o campo \"{{field}}\" acima.",
-    "appsDetected_one": "{{count}} aplicação detectada no workspace",
-    "appsDetected_other": "{{count}} aplicações detectadas no workspace",
     "removeChipAria": "remover {{value}}",
     "searchAndAdd": "Buscar e adicionar…",
     "search": "Buscar…",
-    "noExtractedApps": "Nenhum app extraído neste ticket ainda.",
     "noResults": "Nenhum resultado no ambiente conectado.",
     "filePickerEmptyTitle": "Nenhum arquivo {{kind}}gerado ainda",
     "filePickerEmptyDesc": "Rode uma tarefa de extração ou geração para criar arquivos {{kind}}antes de escolher um aqui.",
@@ -258,7 +255,11 @@
     "selectArtifactTypeFirst": "Selecione um tipo de artefato acima.",
     "loadingArtifacts": "Carregando artefatos do Maximo…",
     "noArtifactsFound": "Nenhum artefato encontrado no Maximo.",
-    "requiredField": "Campo obrigatório."
+    "requiredField": "Campo obrigatório.",
+    "screensDetected_one": "{{count}} tela extraída",
+    "screensDetected_other": "{{count}} telas extraídas",
+    "noScreenExtractionTitle": "Nenhuma extração de tela encontrada no diretório local.",
+    "noScreenExtractionDesc": "Realize a extração de tela antes de gerar a diferença."
   },
   "ideToolbar": {
     "save": "Salvar Alterações",

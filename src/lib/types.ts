@@ -67,11 +67,13 @@ export interface TaskField {
   /** for type "file" — restricts the picker to files ending in one of these
    * extensions (no dot, e.g. ["dbc", "sql"]); omit to show every generated file */
   fileExtensions?: string[];
-  /** for type "catalog" with catalog: "apps" — narrows the option list to
-   * apps that have actually been extracted in this ticket already (derived
-   * from run history via lib/extracted-apps.ts), instead of every app in
-   * the mock Maximo catalog */
-  filterToExtracted?: boolean;
+  /** for type "catalog" with catalog: "apps" — narrows the option list to the
+   * apps that a successful run of *this task id* has produced artifacts for in
+   * the ticket (derived from run history via lib/extracted-apps.ts), instead
+   * of every app in the mock Maximo catalog. Naming the task is what makes the
+   * rule strict: generate-presentation-diff lists apps with a *screen*
+   * extraction behind them, not apps touched by any extraction at all. */
+  extractedBy?: string;
 }
 
 export type RevisionStatus = "active" | "enabled" | "inactive";

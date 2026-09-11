@@ -24,7 +24,7 @@ export function Combobox({ field, value, scopeValue, onChange, invalid, activeTi
   const { runs } = useGeneratedFiles(activeTicket?.id);
 
   const baseOptions = field.catalog ? mdsCatalogFor(field.catalog, scopeValue) : [];
-  const detected = field.filterToExtracted ? extractedApps(runs, activeTicket?.id) : null;
+  const detected = field.extractedBy ? extractedApps(runs, activeTicket?.id, field.extractedBy) : null;
   const options = detected ? baseOptions.filter((o) => detected.has(o)) : baseOptions;
 
   const multiple = !!field.multiple;
@@ -42,6 +42,20 @@ export function Combobox({ field, value, scopeValue, onChange, invalid, activeTi
 
   if (field.scopedBy && !scopeValue) {
     return <div className="combo-disabled">{t("fields.selectFieldFirst", { field: field.scopedBy })}</div>;
+  }
+
+  // Strict filter with nothing behind it: there is no app to pick, so an
+  // input would be a dead end. The DS empty state says what is missing and
+  // what to do about it (run the screen extraction first) instead. The
+  // wording is screen-specific because generate-presentation-diff is the only
+  // field using `extractedBy` today; a second one gets its own keys.
+  if (field.extractedBy && options.length === 0) {
+    return (
+      <div className="ds-empty-state combo-empty-state" role="status" data-od-id={"field-" + field.id + "-empty"}>
+        <p className="ds-empty-state-title">{t("fields.noScreenExtractionTitle")}</p>
+        <p className="ds-empty-state-desc">{t("fields.noScreenExtractionDesc")}</p>
+      </div>
+    );
   }
 
   const filtered = options.filter((o) => o.toLowerCase().includes(query.toLowerCase()) && !selected.includes(o));
@@ -66,11 +80,11 @@ export function Combobox({ field, value, scopeValue, onChange, invalid, activeTi
 
   return (
     <div className="combo" ref={wrapRef}>
-      {field.filterToExtracted && (
+      {field.extractedBy && (
         <div className="combo-badge-row">
-          <span className={"badge " + (options.length > 0 ? "badge-success" : "badge-warning")} data-od-id={"field-" + field.id + "-detected-badge"}>
+          <span className="badge badge-success" data-od-id={"field-" + field.id + "-detected-badge"}>
             <span className="badge-dot" />
-            {t("fields.appsDetected", { count: options.length })}
+            {t("fields.screensDetected", { count: options.length })}
           </span>
         </div>
       )}
@@ -105,11 +119,7 @@ export function Combobox({ field, value, scopeValue, onChange, invalid, activeTi
           </div>
         ) : (
           <div className="combo-menu">
-            <div className="combo-empty">
-              {field.filterToExtracted && options.length === 0
-                ? t("fields.noExtractedApps")
-                : t("fields.noResults")}
-            </div>
+            <div className="combo-empty">{t("fields.noResults")}</div>
           </div>
         ))}
     </div>

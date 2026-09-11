@@ -243,12 +243,9 @@
   },
   "fields": {
     "selectFieldFirst": "First select the \"{{field}}\" field above.",
-    "appsDetected_one": "{{count}} app detected in the workspace",
-    "appsDetected_other": "{{count}} apps detected in the workspace",
     "removeChipAria": "remove {{value}}",
     "searchAndAdd": "Search and add…",
     "search": "Search…",
-    "noExtractedApps": "No app extracted in this ticket yet.",
     "noResults": "No results in the connected environment.",
     "filePickerEmptyTitle": "No {{kind}}file generated yet",
     "filePickerEmptyDesc": "Run an extraction or generation task to create {{kind}}files before choosing one here.",
@@ -258,7 +255,11 @@
     "selectArtifactTypeFirst": "Select an artifact type above.",
     "loadingArtifacts": "Loading artifacts from Maximo…",
     "noArtifactsFound": "No artifact found in Maximo.",
-    "requiredField": "Required field."
+    "requiredField": "Required field.",
+    "screensDetected_one": "{{count}} screen extracted",
+    "screensDetected_other": "{{count}} screens extracted",
+    "noScreenExtractionTitle": "No screen extraction found in local directory.",
+    "noScreenExtractionDesc": "Please perform a screen extraction before generating the difference."
   },
   "ideToolbar": {
     "save": "Save Changes",
@@ -348,7 +349,7 @@
   "catalog": {
     "categories": {
       "db": { "label": "Database", "hint": "Tables, attributes, indexes, domains, relationships" },
-      "apps": { "label": "Applications & Screens", "hint": "Apps, menus, presentation, conditional properties" },
+      "apps": { "label": "Applications & Screens", "hint": "Apps, menus, screens, conditional properties" },
       "automation": { "label": "Automation & Flow", "hint": "Scripts, workflows, escalations, actions" },
       "security": { "label": "Security & Access", "hint": "Security and person groups" },
       "comms": { "label": "Communication", "hint": "System templates and messages" },
@@ -359,8 +360,8 @@
     },
     "tasks": {
       "apply-presentation-diff": {
-        "label": "Apply Presentation Diff",
-        "detail": "Applies the screen diff (.mxs) on top of the current presentation.",
+        "label": "Apply Screen Difference",
+        "detail": "Applies the screen diff (.mxs) on top of the current screen.",
         "fields": {
           "file": { "label": ".mxs file" }
         }
@@ -426,10 +427,10 @@
       },
       "extract-conditional-properties": {
         "label": "Extract Conditional Properties",
-        "detail": "Extracts conditional properties linked to a signature option.",
+        "detail": "Extracts conditional properties linked to an advanced signature.",
         "fields": {
           "app": { "label": "Application" },
-          "sig": { "label": "Signature option" }
+          "sig": { "label": "Advanced signature" }
         }
       },
       "extract-domains": {
@@ -552,8 +553,8 @@
         }
       },
       "extract-presentation": {
-        "label": "Extract Presentation",
-        "detail": "Extracts the presentation XML for one or more applications.",
+        "label": "Extract Screen",
+        "detail": "Extracts the screen XML for one or more applications.",
         "fields": {
           "xmlVersion": {
             "label": "XML version",
@@ -578,11 +579,11 @@
         }
       },
       "extract-signature-options": {
-        "label": "Extract Signature Options",
-        "detail": "Extracts signature options (sigoptions) for an application.",
+        "label": "Extract Advanced Signature",
+        "detail": "Extracts the advanced signature (sigoptions) for an application.",
         "fields": {
           "app": { "label": "Application" },
-          "sig": { "label": "Signature options" }
+          "sig": { "label": "Advanced signature" }
         }
       },
       "extract-start-center": {
@@ -652,10 +653,10 @@
         }
       },
       "generate-presentation-diff": {
-        "label": "Generate Presentation Diff",
+        "label": "Generate Screen Difference",
         "detail": "Creates .mxs files from the presentations/original and presentations/changes folders.",
         "fields": {
-          "apps": { "label": "Applications", "hint": "Only apps already extracted in this ticket appear here. Leave blank to include all." }
+          "apps": { "label": "Applications", "hint": "Only apps with a screen extraction in this ticket appear here. Leave blank to include all." }
         }
       },
       "generate-tech-document": { "label": "Generate Technical Document", "detail": "Generates the project's technical documentation from the active ticket." },
